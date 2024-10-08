@@ -1,4 +1,21 @@
 {
+  "common": {
+    "nav": {
+      "home": "Главная",
+      "projects": "Проекты",
+      "services": "Услуги",
+      "about": "О нас",
+      "contact": "Контакты"
+    },
+    "header": {
+      "price_request": "Запрос цены"
+    },
+    "contact": {
+      "email": "Эпочта",
+      "phone": "Телефон",
+      "address": "Адрес"
+    }
+  },
   "pages": {
     "home": {
       "title": "Домашняя страница"

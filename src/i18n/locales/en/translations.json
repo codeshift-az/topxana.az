@@ -1,4 +1,21 @@
 {
+  "common": {
+    "nav": {
+      "home": "Home page",
+      "projects": "Projects",
+      "services": "Services",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "header": {
+      "price_request": "Price request"
+    },
+    "contact": {
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address"
+    }
+  },
   "pages": {
     "home": {
       "title": "Home page"
