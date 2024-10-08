@@ -1,0 +1,11 @@
+{
+  "pages": {
+    "home": {
+      "title": "Home page"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "message": "The page you are looking for was not found."
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "pages": {
+    "home": {
+      "title": "Ana səhifə"
+    },
+    "notFound": {
+      "title": "Səhifə tapılmadı",
+      "message": "Axtardığınız səhifə tapılmadı."
+    }
+  }
+}

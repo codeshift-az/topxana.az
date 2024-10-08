@@ -1,0 +1,29 @@
+{
+  "bracketSameLine": true,
+  "arrowParens": "always",
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "singleQuote": true,
+  "printWidth": 80,
+  "endOfLine": "lf",
+  "semi": true,
+  "tabWidth": 2,
+  "importOrder": [
+    "^(react|react-dom|react-router-dom)(/.*)?$",
+    "^(react-i18next)$",
+    "^(react-redux)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/assets(/.*)?$",
+    "^@/components(/.*)?$",
+    "^@/constants(/.*)?$",
+    "^@/types(/.*)?$",
+    "^@/helpers(/.*)?$",
+    "^@/store(/.*)?$",
+    "^@/api(/.*)?$",
+    "^@/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+}
