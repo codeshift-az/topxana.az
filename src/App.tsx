@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import '@/assets/css/style.css';
+
 import i18n from '@/i18n';
 import publicRoutes from '@/routes';
 import { LanguageMiddleware } from '@/routes/middlewares';

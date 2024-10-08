@@ -1,4 +1,21 @@
 {
+  "common": {
+    "nav": {
+      "home": "Ana səhifə",
+      "projects": "Proyektlər",
+      "services": "Xidmətlər",
+      "about": "Haqqımızda",
+      "contact": "Əlaqə"
+    },
+    "header": {
+      "price_request": "Qiymət sorğusu"
+    },
+    "contact": {
+      "email": "Email",
+      "phone": "Telefon",
+      "address": "Ünvan"
+    }
+  },
   "pages": {
     "home": {
       "title": "Ana səhifə"
