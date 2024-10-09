@@ -943,7 +943,7 @@ video {
 /* Banner area css
 ============================================================================================ */
 .banner_area {
-  background: url(../img/banner_bg.jpg) no-repeat scroll center center;
+  background: no-repeat scroll center center;
   background-size: cover;
   padding: 60px 0px 75px 0px;
   position: relative;
@@ -2756,10 +2756,33 @@ video {
   font-size: 15px;
 }
 
-.f_navigation_widget ul li {
-  width: 50%;
-  float: left;
-  overflow: hidden;
+.f_news_widget ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.f_news_widget ul li {
+  margin: 8px 0;
+}
+
+.f_news_widget ul li i {
+  margin-right: 10px;
+}
+
+.f_news_widget ul li a {
+  color: #979da4;
+  transition: all 400ms linear 0s;
+}
+
+.f_news_widget ul li a:hover {
+  color: #26a65b;
+}
+
+.f_navigation_widget ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .f_navigation_widget ul li a {
