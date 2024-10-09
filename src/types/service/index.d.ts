@@ -1,6 +1,6 @@
 type Image = {
   id: 0;
-  url: 'string';
+  image: 'string';
 };
 
 export type Service = {

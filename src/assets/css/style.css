@@ -47,6 +47,49 @@ Table of Content:
   src: url(../../../public/assets/fonts/theme-font/Lato-Semibold.woff);
 }
 
+/*----------------------------------------------------- */
+/*---------------------------------------------------- */
+/* Animations */
+.hiddenLeft {
+  opacity: 0;
+  transform: translateX(-15%);
+}
+
+.hiddenAllLeft {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.hiddenRight {
+  opacity: 0;
+  transform: translateX(15%);
+}
+
+.hiddenAllRight {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.hiddenTop {
+  opacity: 0;
+  transform: translateY(15%);
+}
+
+.hiddenAllTop {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.hiddenBottom {
+  opacity: 0;
+  transform: translateY(-15%);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /* Extra css

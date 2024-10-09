@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import GetAQuote from '@/components/Home/GetAQuote';
 import HeroSlider from '@/components/Home/Slider';
 import Layout from '@/components/Layout';
+import Services from '@/components/sections/Services/Services.tsx';
 
 import { getPageTitle } from '@/helpers';
 
@@ -17,7 +18,7 @@ function Home() {
   return (
     <Layout>
       <HeroSlider />
-
+      <Services count={3} page={1} limit={3} mdColumns={4} xsColumns={12} />
       <GetAQuote />
     </Layout>
   );

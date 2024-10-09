@@ -1,11 +1,17 @@
-'use client';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
-import { useEffect, useRef, useState } from 'react';
+// Добавляем generic T, который будет типизировать элемент ref
+type UseInView<T extends HTMLElement> = [
+  MutableRefObject<null | T>,
+  boolean,
+  boolean,
+];
 
-const useInView = () => {
+const useInView = <T extends HTMLElement>(): UseInView<T> => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const [isViewed, setIsViewed] = useState<boolean>(false);
-  const elementRef = useRef<null | HTMLElement>(null);
+  // Используем generic T для типизации ref
+  const elementRef = useRef<null | T>(null);
 
   const checkIsInView = () => {
     if (elementRef.current) {
