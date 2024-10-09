@@ -9,13 +9,14 @@ import useSWR from 'swr';
 
 import fullHdPlaceholder from '@/assets/images/placeholder/1920x1080.png';
 
-import { useHeroSliderStore } from '@/store';
+import { useHeaderFixedStore, useHeroSliderStore } from '@/store';
 
 import { getHeroSlider } from '@/api/hero-slider';
 
 const HeroSlider = () => {
   const { data, isLoading } = useSWR('heroSlider', getHeroSlider);
   const { state: heroSlides, updateInfo } = useHeroSliderStore();
+  const { isFixed } = useHeaderFixedStore();
 
   useEffect(() => {
     if (data) {
@@ -23,10 +24,8 @@ const HeroSlider = () => {
     }
   }, [data]);
 
-  console.log(heroSlides);
-
   return (
-    <section className="main_slider_area">
+    <section className={`main_slider_area ${isFixed && 'marginFixed'}`}>
       <div className="">
         {isLoading ? (
           <div>

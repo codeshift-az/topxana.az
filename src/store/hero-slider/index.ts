@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { HeroSlider } from '@/types/hero-slider';
+import { HeroSlider } from '@/types';
 
 interface HeroSliderState {
   state: HeroSlider[];

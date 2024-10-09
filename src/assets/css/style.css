@@ -103,6 +103,10 @@ video {
   background: #eee;
 }
 
+.marginFixed {
+  margin-top: 70px;
+}
+
 .language-select {
   width: 200px; /* Уменьшил ширину */
   padding: 8px; /* Сделал отступы поменьше */
@@ -3213,6 +3217,9 @@ video {
 }
 
 @media (max-width: 480px) {
+  .marginFixed {
+    margin-top: 50px;
+  }
   .hero_slider_image_container {
     height: 400px;
   }

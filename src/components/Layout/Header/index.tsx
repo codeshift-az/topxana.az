@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -7,21 +7,17 @@ import useSWR from 'swr';
 
 import { Logo } from '@/assets/images';
 
+import HeaderBottom from '@/components/Layout/Header/HeaderBottom.tsx';
+
 import { useContactStore } from '@/store';
 
 import { getContactInformation } from '@/api/contact';
 
 function Header() {
   const { t } = useTranslation('common');
+  const logoAreaRef = useRef<HTMLDivElement | null>(null);
 
   const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
-
-  const location = useLocation();
-
-  const isActive = (path: string) =>
-    location.pathname.endsWith(path) ? 'active' : '';
-
-  const [mobileMenu, setMobileMenu] = useState(false);
 
   const { data, isLoading } = useSWR('contactInfo', getContactInformation);
   const { state: contactInfo, updateInfo } = useContactStore();
@@ -77,7 +73,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="logo_area">
+      <div ref={logoAreaRef} className="logo_area">
         <div className="container">
           <div className="pull-left logo_neno">
             <img src={Logo} alt="Logo" />
@@ -123,48 +119,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="main_menu_area">
-        <nav className="navbar navbar-default">
-          <div className="container">
-            <div className="navbar-header">
-              <button
-                type="button"
-                className="navbar-toggle collapsed"
-                onClick={() => setMobileMenu(!mobileMenu)}>
-                <span className="sr-only"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-            </div>
-
-            <div
-              className={`collapse navbar-collapse ${mobileMenu ? 'in' : ''}`}>
-              <ul className="nav navbar-nav">
-                <li className={isActive('/') ? 'active' : ''}>
-                  <Link to="/">{t('nav.home')}</Link>
-                </li>
-
-                <li className={isActive('/projects') ? 'active' : ''}>
-                  <Link to="/projects">{t('nav.projects')}</Link>
-                </li>
-
-                <li className={isActive('/services') ? 'active' : ''}>
-                  <Link to="/services">{t('nav.services')}</Link>
-                </li>
-
-                <li className={isActive('/about') ? 'active' : ''}>
-                  <Link to="/about">{t('nav.about')}</Link>
-                </li>
-
-                <li className={isActive('/contact') ? 'active' : ''}>
-                  <Link to="/contact">{t('nav.contact')}</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
+      <HeaderBottom logoAreaRef={logoAreaRef} />
     </header>
   );
 }

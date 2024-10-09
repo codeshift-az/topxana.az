@@ -1,4 +1,4 @@
-import { HeroSlider } from '@/types/hero-slider';
+import { HeroSlider } from '@/types';
 
 import axiosInstance from '@/api';
 
