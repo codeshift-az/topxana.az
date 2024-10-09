@@ -14,6 +14,11 @@
       "email": "Email",
       "phone": "Telefon",
       "address": "Ünvan"
+    },
+    "constructor": {
+      "title": "Növbəti layihəniz üçün məsul vəziyyətdə konstruktor?",
+      "get_a_quote": "Qiymət təklifi",
+      "our_projects": "Bizim proyektlər"
     }
   },
   "pages": {

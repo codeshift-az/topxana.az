@@ -44,8 +44,10 @@ function Header() {
 
           <div className="pull-right header_language">
             <div className="selector">
-              <select name="countries" style={{ width: '300px' }}>
-                <option value="yt">English</option>
+              <select className="language-select" name="countries">
+                <option value="en">English</option>
+                <option value="az">Azerbaijani</option>
+                <option value="ru">Russian</option>
               </select>
             </div>
             <ul className="header_social">
