@@ -1,6 +1,8 @@
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import ReadMore from '@/components/ui/ReadMore.tsx';
+
 import useInView from '@/hooks/useInView.tsx';
 
 type ServiceItemProps = {
@@ -44,9 +46,7 @@ const ServiceItem: FC<ServiceItemProps> = ({
             <h3>{title}</h3>
           </Link>
           <p>{description}</p>
-          <Link className="read_more_btn" to={`/services/${slug}`}>
-            Read More <i className="fa fa-angle-right"></i>
-          </Link>
+          <ReadMore href={`/services/${slug}`} />
         </div>
       </div>
     </div>
