@@ -2542,6 +2542,17 @@ video {
   padding: 75px 0px 90px 0px;
 }
 
+.form-error {
+  border: 1px solid red !important;
+}
+
+.contact-form-error-message {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  margin: 5px 0;
+}
+
 .contact_from_area .blog_comment_from .comm_tittle {
   padding-top: 0px;
 }

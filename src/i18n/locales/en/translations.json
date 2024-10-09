@@ -20,6 +20,17 @@
     "home": {
       "title": "Home page"
     },
+    "contact": {
+      "title": "Contact Page",
+      "contact_info": "Contact Info",
+      "send_a_message": "Send a Message",
+      "form_name": "Name",
+      "form_email": "Email",
+      "form_lastname": "Last Name",
+      "form_phone": "Phone",
+      "form_message": "Message",
+      "form_error_message": "Fields cannot be empty! Please fill out all fields!"
+    },
     "notFound": {
       "title": "Page not found",
       "message": "The page you are looking for was not found."
