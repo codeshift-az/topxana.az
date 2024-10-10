@@ -3153,6 +3153,18 @@ video {
 }
 
 @media (max-width: 767px) {
+  .header_bottom_active {
+    max-height: 500px !important;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header_bottom_disable {
+    max-height: 0 !important;
+    opacity: 0;
+    visibility: hidden;
+  }
+
   .main_menu_area .navbar.navbar-default .navbar-header .navbar-toggle {
     border-color: #26a65b;
     transition: all 300ms linear;
