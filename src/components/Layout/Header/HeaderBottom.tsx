@@ -70,7 +70,15 @@ const HeaderBottom: FC<HeaderBottomProps> = ({ logoAreaRef }) => {
             </button>
           </div>
 
-          <div className={`collapse navbar-collapse ${mobileMenu ? 'in' : ''}`}>
+          <div
+            style={{
+              overflow: 'hidden',
+              maxHeight: mobileMenu ? '500px' : '0',
+              opacity: mobileMenu ? '1' : '0',
+              transition: 'all 0.5s',
+              visibility: mobileMenu ? 'visible' : 'hidden',
+            }}
+            className={`collapse navbar-collapse`}>
             <ul className="nav navbar-nav">
               <li className={isActive('/') ? 'active' : ''}>
                 <Link to="/">{t('nav.home')}</Link>

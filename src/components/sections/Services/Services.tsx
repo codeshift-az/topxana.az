@@ -51,6 +51,7 @@ const Services: FC<ServicesProps> = ({
         <div className="row">
           {services?.results?.map((service, i) => (
             <ServiceItem
+              key={service?.slug || i}
               delay={i * 50 + 100}
               image={service?.images[0]?.image}
               title={service?.title}

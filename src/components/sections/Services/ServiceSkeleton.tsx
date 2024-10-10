@@ -19,7 +19,7 @@ const ServiceSkeleton: FC<ServiceSkeletonProps> = ({
       <div className="container">
         <div className="row">
           {[...Array(count)].map((_, i) => (
-            <div className={`col-xs-${xsColumns} col-md-${mdColumns}`}>
+            <div key={i} className={`col-xs-${xsColumns} col-md-${mdColumns}`}>
               <Skeleton key={i} height={478} style={{ width: '100%' }} />
             </div>
           ))}
