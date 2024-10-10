@@ -7,28 +7,28 @@ import useSWR from 'swr';
 
 import { Logo } from '@/assets/images';
 
-import { useContactStore } from '@/store';
+import { ContactInformation } from '@/types';
 
 import { getContactInformation } from '@/api/contact';
 
 function Header() {
-  const { t } = useTranslation('common');
-
   const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
+
+  const { t } = useTranslation('common');
 
   const location = useLocation();
 
   const isActive = (path: string) =>
     location.pathname.endsWith(path) ? 'active' : '';
 
+  const [contactInfo, setContactInfo] = useState<ContactInformation>();
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const { data, isLoading } = useSWR('contactInfo', getContactInformation);
-  const { state: contactInfo, updateInfo } = useContactStore();
 
   useEffect(() => {
     if (data) {
-      updateInfo(data);
+      setContactInfo(data);
     }
   }, [data]);
 
@@ -49,21 +49,21 @@ function Header() {
               </select>
             </div>
             <ul className="header_social">
-              {contactInfo.instagram && (
+              {contactInfo?.instagram && (
                 <li>
                   <a href={contactInfo.instagram} target="_blank">
                     <i className="fa fa-instagram"></i>
                   </a>
                 </li>
               )}
-              {contactInfo.facebook && (
+              {contactInfo?.facebook && (
                 <li>
                   <a href={contactInfo.facebook} target="_blank">
                     <i className="fa fa-facebook"></i>
                   </a>
                 </li>
               )}
-              {contactInfo.whatsapp && (
+              {contactInfo?.whatsapp && (
                 <li>
                   <a href={contactInfo.whatsapp} target="_blank">
                     <i className="fa fa-whatsapp"></i>
@@ -88,7 +88,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.phone')}</h4>
-                  <h5>{contactInfo.phone}</h5>
+                  <h5>{contactInfo?.phone}</h5>
                 </div>
               </div>
             </div>
@@ -99,7 +99,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.email')}</h4>
-                  <h5>{contactInfo.email}</h5>
+                  <h5>{contactInfo?.email}</h5>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.address')}</h4>
-                  <h5>{contactInfo.address}</h5>
+                  <h5>{contactInfo?.address}</h5>
                 </div>
               </div>
             </div>

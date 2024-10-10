@@ -1,31 +1,31 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-//i18next
 import { useTranslation } from 'react-i18next';
 
 import useSWR from 'swr';
 
-//zustand
-import { useContactStore } from '@/store';
+import { ContactInformation } from '@/types';
 
 import { getContactInformation } from '@/api/contact';
 
-//components
-import ContactForm from '../../components/ContactForm';
+import ContactForm from './components/ContactForm';
+import ContactInfo from './components/ContactInfo';
 
 const ContactFormArea = () => {
   const { t } = useTranslation('pages', { keyPrefix: 'contact' });
-  const { data, isLoading } = useSWR('contactinfo', getContactInformation);
-  const { state: contactInfo, updateInfo } = useContactStore();
+  const [contactInfo, setContactInfo] = useState<ContactInformation>();
+  const { data: contactInfoData, isLoading } = useSWR(
+    'contactinfo',
+    getContactInformation
+  );
 
   useEffect(() => {
-    if (data) {
-      updateInfo(data);
+    if (contactInfoData) {
+      setContactInfo(contactInfoData);
     }
-  }, [data]);
+  }, [contactInfoData]);
 
-  if (isLoading) return <div>{t('loading')}</div>;
+  if (isLoading) return <div>Loading....</div>;
 
   return (
     <section className="contact_from_area contact_from_area2">
@@ -45,78 +45,12 @@ const ContactFormArea = () => {
                 <h4>{t('send_a_message')}</h4>
               </div>
               <div className="row">
-                <ContactForm t={t} />
+                <ContactForm />
               </div>
             </div>
           </div>
           <div className="col-md-6">
-            <div className="contact_details">
-              <div className="map_area" id="mapBox">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.3440591001636!2d49.844190475147826!3d40.37906655793209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307da7a06b402f%3A0xd8897cf79ec36111!2zMjggQWzEscWfdmVyacWfIE1lcmtlemk!5e0!3m2!1str!2saz!4v1728471403968!5m2!1str!2saz"
-                  width={600}
-                  height={450}
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-              <div className="comm_tittle">
-                <h4>{t('contact_info')}</h4>
-              </div>
-              <div className="media">
-                <div className="media-left">
-                  <i className="fa fa-map-marker" />
-                </div>
-                <div className="media-body">
-                  <p>{contactInfo.address}</p>
-                </div>
-              </div>
-              <div className="media">
-                <div className="media-left">
-                  <i className="fa fa-phone" />
-                </div>
-                <div className="media-body">
-                  <h4>{contactInfo.phone}</h4>
-                </div>
-              </div>
-              <div className="media">
-                <div className="media-left">
-                  <i className="fa fa-envelope" />
-                </div>
-                <div className="media-body">
-                  <h3>{contactInfo.email}</h3>
-                  <ul>
-                    <li>
-                      <Link to="#">
-                        <i className="fa fa-facebook" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <i className="fa fa-twitter" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <i className="fa fa-google-plus" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <i className="fa fa-pinterest" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <i className="fa fa-instagram" />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <ContactInfo contactInfo={contactInfo} />
           </div>
         </div>
       </div>

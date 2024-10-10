@@ -6,3 +6,11 @@ export type ContactInformation = {
   facebook: string;
   whatsapp: string;
 };
+
+export type ContactMessageForm = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  message: string;
+};
