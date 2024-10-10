@@ -10,6 +10,10 @@
     "header": {
       "price_request": "Price request"
     },
+    "footer": {
+      "links": "Links",
+      "Tikinti": "Construction"
+    },
     "contact": {
       "email": "Email",
       "phone": "Phone",

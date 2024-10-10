@@ -10,6 +10,11 @@
     "header": {
       "price_request": "Qiymət sorğusu"
     },
+    "footer": {
+      "links": "Linklər",
+      "Tikinti": "Tikinti"
+    },
+
     "contact": {
       "email": "Email",
       "phone": "Telefon",

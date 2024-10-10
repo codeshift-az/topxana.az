@@ -10,6 +10,9 @@
     "header": {
       "price_request": "Запрос цены"
     },
+    "footer": {
+      "links": "Ссылки"
+    },
     "contact": {
       "email": "Эпочта",
       "phone": "Телефон",

@@ -1,28 +1,48 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import useSWR from 'swr';
 
-import { FooterLogo } from '@/assets/images';
+import { LogoLight } from '@/assets/images';
 
-import { useContactStore } from '@/store';
+import { ContactInformation, Services } from '@/types';
 
 import { getContactInformation } from '@/api/contact';
+import { getServiceData } from '@/api/service';
+
+const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
 
 const Footer = () => {
-  const { t } = useTranslation();
-  const { data, isLoading } = useSWR('contactInfo', getContactInformation);
-  const { state: contactInfo, updateInfo } = useContactStore();
-  const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
+  const { t } = useTranslation('common');
+  const { data: contactInfoData, isLoading } = useSWR(
+    'contactInfo',
+    getContactInformation
+  );
+
+  const { data: services, isLoading: serviceLoading } = useSWR(
+    'serviceData',
+    getServiceData
+  );
+
+  const [serviceList, setServiceList] = useState<Services>();
+  const [contactInfo, setContactInfo] = useState<ContactInformation>();
 
   useEffect(() => {
-    if (data) {
-      updateInfo(data);
+    if (services) {
+      setServiceList(services);
     }
-  }, [data]);
+  }, [services]);
+
+  useEffect(() => {
+    if (contactInfoData) {
+      setContactInfo(contactInfoData);
+    }
+  }, [contactInfoData]);
 
   if (isLoading) return <div>{t('loading')}</div>;
+  if (serviceLoading) return <div>{t('loading')}</div>;
 
   return (
     <footer className="footer_area">
@@ -32,7 +52,7 @@ const Footer = () => {
             <div className="col-md-3">
               <div className="footer_widget_inner">
                 <div className="f_widget_tittle">
-                  <h3>ABOUT US</h3>
+                  <h3>{t('nav.about')}</h3>
                 </div>
                 <div className="f_about_widget">
                   <p>
@@ -41,53 +61,25 @@ const Footer = () => {
                     dictum, lectus elit ultricies est, ut congue augue risus ac
                     turpis.
                   </p>
-                  <img src={FooterLogo} />
+                  <img src={LogoLight} />
                 </div>
               </div>
             </div>
             <div className="col-md-3">
               <div className="footer_widget_inner">
                 <div className="f_widget_tittle">
-                  <h3>E-NEWSLETTER</h3>
+                  <h3>{t('nav.services')}</h3>
                 </div>
                 <div className="f_news_widget ">
                   <ul className="footer-services-list">
-                    <li>
-                      <a href="">
-                        <i className="fa fa-angle-right" aria-hidden="true" />
-                        Construction
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <i className="fa fa-angle-right" aria-hidden="true" />
-                        Architecture Design
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <i className="fa fa-angle-right" aria-hidden="true" />
-                        Building Painting
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <i className="fa fa-angle-right" aria-hidden="true" />
-                        Laminate Floring
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <i className="fa fa-angle-right" aria-hidden="true" />
-                        Roof Construction
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <i className="fa fa-angle-right" aria-hidden="true" />
-                        Building Repair
-                      </a>
-                    </li>
+                    {serviceList?.results?.map((service, index) => (
+                      <li key={index}>
+                        <Link to="">
+                          <i className="fa fa-angle-right" aria-hidden="true" />
+                          {t(`footer.${service.title}`)}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -95,39 +87,39 @@ const Footer = () => {
             <div className="col-md-3">
               <div className="footer_widget_inner">
                 <div className="f_widget_tittle">
-                  <h3>NAVIGATION </h3>
+                  <h3>{t('footer.links')}</h3>
                 </div>
                 <div className="f_navigation_widget">
                   <ul>
                     <li>
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-angle-right" aria-hidden="true" />
-                        Home
-                      </a>
+                        {t('nav.home')}
+                      </Link>
                     </li>
                     <li>
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-angle-right" aria-hidden="true" />
-                        About Company
-                      </a>
+                        {t('nav.about')}
+                      </Link>
                     </li>
                     <li>
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-angle-right" aria-hidden="true" />
-                        Our Services
-                      </a>
+                        {t('nav.services')}
+                      </Link>
                     </li>
                     <li>
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-angle-right" aria-hidden="true" />
-                        Contact
-                      </a>
+                        {t('nav.contact')}
+                      </Link>
                     </li>
                     <li>
-                      <a href="#">
+                      <Link to="#">
                         <i className="fa fa-angle-right" aria-hidden="true" />
-                        Projects
-                      </a>
+                        {t('nav.projects')}
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -136,7 +128,7 @@ const Footer = () => {
             <div className="col-md-3">
               <div className="footer_widget_inner">
                 <div className="f_widget_tittle">
-                  <h3>CONTACT US</h3>
+                  <h3>{t('nav.contact')}</h3>
                 </div>
                 <div className="f_contact_widget">
                   <p>
@@ -147,40 +139,40 @@ const Footer = () => {
                     <li>
                       <a href="#">
                         <i className="fa fa-map-marker" aria-hidden="true" />
-                        {contactInfo.address}
+                        {contactInfo?.address}
                       </a>
                     </li>
                     <li>
                       <a href="#">
                         <i className="fa fa-phone" aria-hidden="true" />
-                        {contactInfo.phone}
+                        {contactInfo?.phone}
                       </a>
                     </li>
                     <li>
                       <a href="#">
                         <i className="fa fa-envelope-o" aria-hidden="true" />
-                        {contactInfo.email}
+                        {contactInfo?.email}
                       </a>
                     </li>
                   </ul>
                   <ul className="f_widget_social">
-                    {contactInfo.facebook && (
+                    {contactInfo?.facebook && (
                       <li>
-                        <a href={contactInfo.facebook}>
+                        <a href={contactInfo.facebook} target="_blank">
                           <i className="fa fa-facebook" />
                         </a>
                       </li>
                     )}
-                    {contactInfo.whatsapp && (
+                    {contactInfo?.whatsapp && (
                       <li>
-                        <a href={contactInfo.whatsapp}>
+                        <a href={contactInfo.whatsapp} target="_blank">
                           <i className="fa fa-whatsapp" />
                         </a>
                       </li>
                     )}
-                    {contactInfo.instagram && (
+                    {contactInfo?.instagram && (
                       <li>
-                        <a href={contactInfo.instagram}>
+                        <a href={contactInfo.instagram} target="_blank">
                           <i className="fa fa-instagram" />
                         </a>
                       </li>
