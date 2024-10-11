@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import TestimonialsAccordion from '@/components/sections/Testimonials/TestimonialsAccordion.tsx';
 import TestimonialsSlider from '@/components/sections/Testimonials/TestimonialsSlider.tsx';
 
@@ -5,6 +7,9 @@ import useInView from '@/hooks/useInView.tsx';
 
 const Testimonials = () => {
   const [ref, isViewed] = useInView<HTMLDivElement>();
+  const { t } = useTranslation('common', {
+    keyPrefix: 'testimonials',
+  });
 
   return (
     <section className="testimonials_area">
@@ -15,12 +20,8 @@ const Testimonials = () => {
             className={`${isViewed ? 'visible' : 'hiddenAllLeft'} col-md-6`}>
             <div className="testimonials_inner_content">
               <div className="section_tittle">
-                <h2>Our Testimonials</h2>
-                <p>
-                  Proin consectetur sit amet libero non ultrices. Vivamus
-                  ultrices id ligula hendrerit sodales. Duis felis leo,
-                  consectetur at orci vel, maximus volutpat metus.{' '}
-                </p>
+                <h2>{t('title')}</h2>
+                <p>{t('content')} </p>
               </div>
               <TestimonialsSlider />
             </div>
@@ -30,11 +31,8 @@ const Testimonials = () => {
             className={`${isViewed ? 'visible' : 'hiddenAllRight'} col-md-6`}>
             <div className="chose_inner_area">
               <div className="section_tittle">
-                <h2>Why Choose Us</h2>
-                <p>
-                  Proin consectetur sit amet libero non ultrices. Vivamus
-                  ultrices id ligula hendrerit.
-                </p>
+                <h2>{t('why-us')}</h2>
+                <p>{t('why-us-content')} </p>
               </div>
               <TestimonialsAccordion />
             </div>

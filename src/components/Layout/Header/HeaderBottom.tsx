@@ -30,12 +30,10 @@ const HeaderBottom: FC<HeaderBottomProps> = ({ logoAreaRef }) => {
         const menuTopOffset = menu.offsetTop;
         const logoAreaBottomOffset = logoArea.offsetTop + logoArea.offsetHeight;
 
-        // Проверяем, пересекла ли верхняя граница viewport-а верхнюю границу меню
         if (window.scrollY >= menuTopOffset) {
           setIsFixed(true);
         }
 
-        // Проверяем, пересекла ли верхняя граница меню нижнюю границу логотипа
         if (window.scrollY <= logoAreaBottomOffset) {
           setIsFixed(false);
         }

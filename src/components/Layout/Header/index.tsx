@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -10,14 +10,42 @@ import HeaderBottom from '@/components/Layout/Header/HeaderBottom.tsx';
 import { useContactStore } from '@/store';
 
 function Header() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const logoAreaRef = useRef<HTMLDivElement | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
-
   const { data: contactInfo } = useContactStore();
 
   if (!contactInfo) return <div>{t('loading')}</div>;
+
+  const languages = [
+    {
+      code: 'en',
+      name: 'English',
+    },
+    {
+      code: 'ru',
+      name: 'Русский',
+    },
+    {
+      code: 'az',
+      name: 'Azərbaycan',
+    },
+  ];
+
+  const handleLanguageChange = (newLanguage: string) => {
+    const pathParts = location.pathname.split('/');
+    if (languages.some((lang) => lang.code === pathParts[1])) {
+      pathParts[1] = newLanguage;
+    } else {
+      pathParts.unshift(newLanguage);
+    }
+    const newPath = pathParts.join('/');
+    navigate(newPath);
+    i18n.changeLanguage(newLanguage);
+  };
 
   return (
     <header>
@@ -29,10 +57,16 @@ function Header() {
 
           <div className="pull-right header_language">
             <div className="selector">
-              <select className="language-select" name="countries">
-                <option value="en">English</option>
-                <option value="az">Azerbaijani</option>
-                <option value="ru">Russian</option>
+              <select
+                className="language-select"
+                name="countries"
+                value={i18n.language}
+                onChange={(e) => handleLanguageChange(e.target.value)}>
+                {languages.map((language) => (
+                  <option key={language.code} value={language.code}>
+                    {language.name}
+                  </option>
+                ))}
               </select>
             </div>
             <ul className="header_social">

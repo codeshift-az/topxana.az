@@ -10,12 +10,15 @@ const SelectService = () => {
     keyPrefix: 'services',
   });
 
+  // For some reason, if I change services directly, it changes in global state
+  const localServices = services ? [...services] : [];
+
   if (!services) {
     return <div>Loading...</div>;
   }
 
-  if (services.findIndex((service) => service.slug === t('all')) === -1) {
-    services.unshift({
+  if (localServices.findIndex((service) => service.slug === t('all')) === -1) {
+    localServices.unshift({
       slug: t('all'),
       title: t('all'),
       description: t('all'),
@@ -27,11 +30,17 @@ const SelectService = () => {
 
   return (
     <ul className="portfolio_menu">
-      {services?.map((service) => (
+      {localServices?.map((service) => (
         <li
           key={service.slug}
           onClick={() => setActiveService(service.slug)}
-          className={activeService === service.slug ? 'active' : ''}>
+          className={
+            service?.slug === t('all') && !activeService
+              ? 'active'
+              : activeService === service.slug
+                ? 'active'
+                : ''
+          }>
           {service.title}
         </li>
       ))}

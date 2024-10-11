@@ -13,6 +13,17 @@
     "services": {
       "all": "Bütün xidmətlər"
     },
+    "about": {
+      "title": "Haqqımızda",
+      "about-1": "Bizim haqqımızda",
+      "about-2": "Komandamız"
+    },
+    "testimonials": {
+      "title": "Rəylər",
+      "content": "Müştərilərimizin rəyləri",
+      "why-us": "Niyə biz?",
+      "why-us-content": "Bizimlə işləməyin ən əsas səbəbləri"
+    },
     "contact": {
       "email": "Email",
       "phone": "Telefon",

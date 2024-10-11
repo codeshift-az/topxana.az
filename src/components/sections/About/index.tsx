@@ -1,9 +1,14 @@
+import { useTranslation } from 'react-i18next';
+
 import ReadMore from '@/components/ui/ReadMore.tsx';
 
 import useInView from '@/hooks/useInView.tsx';
 
 const About = () => {
   const [ref, isViewed] = useInView<HTMLDivElement>();
+  const { t } = useTranslation('common', {
+    keyPrefix: 'about',
+  });
 
   return (
     <section className="conpany_about_area">
@@ -14,20 +19,10 @@ const About = () => {
             className={`${isViewed ? 'visible' : 'hiddenAllLeft'} col-md-6`}>
             <div className="company_content">
               <div className="about_tittle">
-                <h2>About Our Company</h2>
+                <h2>{t('title')}</h2>
               </div>
-              <p>
-                Mauris efficitur interdum tincidunt. Donec ac lobortis orci.
-                Mauris suscipit nec nisl venenatis dictum. Aliquam interdum
-                mauris consequat est scelerisque, cursus mattis orci tempor.
-                Cras quis pellentesque diam.{' '}
-              </p>
-              <p>
-                Praesent vel volutpat tortor. Proin ac iaculis quam. Donec sit
-                amet ipsum eu sem sollicitudin porttitor imperdiet ut nisi. In
-                hac habitasse platea dictumst. Sed eu nisi leo. Phasellus mollis
-                viverra velit at porta. Mauris leo ante, lacinia non diam sed.
-              </p>
+              <p>{t('about-1')} </p>
+              <p>{t('about-2')}</p>
               <ReadMore href="/about" />
             </div>
           </div>
