@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { useHeaderFixedStore } from '@/store';
+import { useLayoutStore } from '@/store';
 
 type HeaderBottomProps = {
   logoAreaRef: RefObject<HTMLDivElement>;
@@ -12,7 +12,7 @@ type HeaderBottomProps = {
 
 const HeaderBottom: FC<HeaderBottomProps> = ({ logoAreaRef }) => {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const { isFixed, setIsFixed } = useHeaderFixedStore();
+  const { isFixed, setIsFixed } = useLayoutStore();
   const { t } = useTranslation('common');
   const menuRef = useRef<HTMLDivElement | null>(null);
 

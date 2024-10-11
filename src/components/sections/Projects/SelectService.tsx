@@ -1,35 +1,33 @@
-import { useEffect } from 'react';
-
-import useSWR from 'swr';
-
-import ServiceListSkeleton from '@/components/sections/Projects/ServiceListSkeleton.tsx';
+import { useTranslation } from 'react-i18next';
 
 import { useServicesStore } from '@/store';
 import { useProjectsFilterStore } from '@/store/projects';
 
-import { getServices } from '@/api/services';
-
 const SelectService = () => {
-  const { isLoading: isServicesLoading, data } = useSWR(
-    `page=${1}&limit=${10}`,
-    getServices
-  );
-  const { state: services, updateInfo } = useServicesStore();
+  const { state: services } = useServicesStore();
   const { activeService, setActiveService } = useProjectsFilterStore();
+  const { t } = useTranslation('common', {
+    keyPrefix: 'services',
+  });
 
-  useEffect(() => {
-    if (data) {
-      updateInfo(data);
-    }
-  }, [data]);
+  if (!services) {
+    return <div>Loading...</div>;
+  }
 
-  if (isServicesLoading) {
-    return <ServiceListSkeleton />;
+  if (services.findIndex((service) => service.slug === t('all')) === -1) {
+    services.unshift({
+      slug: t('all'),
+      title: t('all'),
+      description: t('all'),
+      images: [],
+      updated_at: '',
+      created_at: '',
+    });
   }
 
   return (
     <ul className="portfolio_menu">
-      {services?.results?.map((service) => (
+      {services?.map((service) => (
         <li
           key={service.slug}
           onClick={() => setActiveService(service.slug)}

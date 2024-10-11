@@ -10,6 +10,9 @@
     "header": {
       "price_request": "Qiymət sorğusu"
     },
+    "services": {
+      "all": "Bütün xidmətlər"
+    },
     "contact": {
       "email": "Email",
       "phone": "Telefon",

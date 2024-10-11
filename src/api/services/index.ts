@@ -1,8 +1,9 @@
-import { PaginatedResponse, Service } from '@/types';
+import { Service } from '@/types';
 
 import axiosInstance from '@/api';
 
-export const getServices = async (url: string) => {
-  const { data } = await axiosInstance.get(`/services?${url}`);
-  return data as PaginatedResponse<Service>;
+export const getServices = async () => {
+  const { data } = await axiosInstance.get(`/services?limit=all`);
+  console.log(data, 'services');
+  return data as Service[];
 };

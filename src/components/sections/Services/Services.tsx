@@ -1,55 +1,22 @@
-import { FC, useEffect } from 'react';
-
-import useSWR from 'swr';
-
 import ServiceItem from '@/components/sections/Services/ServiceItem.tsx';
-import ServiceSkeleton from '@/components/sections/Services/ServiceSkeleton.tsx';
 
 import { useServicesStore } from '@/store';
 
-import { getServices } from '@/api/services';
-
 type ServicesProps = {
-  page: number;
-  limit: number;
   mdColumns: number;
   xsColumns: number;
-  count: number;
 };
 
-const Services: FC<ServicesProps> = ({
-  page,
-  limit,
-  xsColumns,
-  mdColumns,
-  count,
-}) => {
-  const { isLoading, data } = useSWR(
-    `page=${page}&limit=${limit}`,
-    getServices
-  );
-  const { state: services, updateInfo } = useServicesStore();
+const Services = ({ xsColumns, mdColumns }: ServicesProps) => {
+  const { state: services } = useServicesStore();
 
-  useEffect(() => {
-    if (data) {
-      updateInfo(data);
-    }
-  }, [data]);
-
-  if (isLoading)
-    return (
-      <ServiceSkeleton
-        xsColumns={xsColumns}
-        mdColumns={mdColumns}
-        count={count}
-      />
-    );
+  if (!services) return <div>Loading...</div>;
 
   return (
     <section className="project_item_area">
       <div className="container">
         <div className="row">
-          {services?.results?.map((service, i) => (
+          {services?.map((service, i) => (
             <ServiceItem
               key={service?.slug || i}
               delay={i * 50 + 100}

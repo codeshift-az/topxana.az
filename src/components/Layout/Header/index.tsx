@@ -1,9 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
-
-import useSWR from 'swr';
 
 import { Logo } from '@/assets/images';
 
@@ -11,24 +9,15 @@ import HeaderBottom from '@/components/Layout/Header/HeaderBottom.tsx';
 
 import { useContactStore } from '@/store';
 
-import { getContactInformation } from '@/api/contact';
-
 function Header() {
   const { t } = useTranslation('common');
   const logoAreaRef = useRef<HTMLDivElement | null>(null);
 
   const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
 
-  const { data, isLoading } = useSWR('contactInfo', getContactInformation);
-  const { state: contactInfo, updateInfo } = useContactStore();
+  const { data: contactInfo } = useContactStore();
 
-  useEffect(() => {
-    if (data) {
-      updateInfo(data);
-    }
-  }, [data]);
-
-  if (isLoading) return <div>{t('loading')}</div>;
+  if (!contactInfo) return <div>{t('loading')}</div>;
 
   return (
     <header>

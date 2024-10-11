@@ -2,12 +2,26 @@ import { create } from 'zustand';
 
 import { ContactInformation } from '@/types';
 
+import { getContactInformation } from '@/api/contact';
+
 interface ContactState {
-  state: ContactInformation;
-  updateInfo: (info: ContactInformation) => void;
+  data: ContactInformation | null;
+  isLoading: boolean;
+  loadInfo: () => void;
 }
 
-export const useContactStore = create<ContactState>((set) => ({
-  state: {} as ContactInformation,
-  updateInfo: (info) => set({ state: info }),
+export const useContactStore = create<ContactState>((set, get) => ({
+  data: null,
+  isLoading: false,
+  loadInfo: () => {
+    const state = get();
+
+    if (!state.data) {
+      set({ isLoading: true });
+      getContactInformation()
+        .then((data) => set({ data: data }))
+        .catch((error) => console.log(error))
+        .finally(() => set({ isLoading: false }));
+    }
+  },
 }));

@@ -1,33 +1,20 @@
-// Import Swiper styles
-import { useEffect } from 'react';
-
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import useSWR from 'swr';
 
 import fullHdPlaceholder from '@/assets/images/placeholder/1920x1080.png';
 
-import { useHeaderFixedStore, useHeroSliderStore } from '@/store';
-
-import { getHeroSlider } from '@/api/hero-slider';
+import { useHeroSliderStore, useLayoutStore } from '@/store';
 
 const HeroSlider = () => {
-  const { data, isLoading } = useSWR('heroSlider', getHeroSlider);
-  const { state: heroSlides, updateInfo } = useHeroSliderStore();
-  const { isFixed } = useHeaderFixedStore();
-
-  useEffect(() => {
-    if (data) {
-      updateInfo(data);
-    }
-  }, [data]);
+  const { data: heroSlides } = useHeroSliderStore();
+  const { isFixed } = useLayoutStore();
 
   return (
     <section className={`main_slider_area ${isFixed && 'marginFixed'}`}>
       <div className="">
-        {isLoading ? (
+        {!heroSlides ? (
           <div>
             <img
               alt="Placeholder slide"

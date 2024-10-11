@@ -1,8 +1,10 @@
+import type { ReactNode } from 'react';
+
 import Footer from './Footer';
 import Header from './Header';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function Layout({ children }: Props) {

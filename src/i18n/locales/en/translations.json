@@ -15,6 +15,9 @@
       "phone": "Phone",
       "address": "Address"
     },
+    "services": {
+      "all": "All services"
+    },
     "constructor": {
       "title": "Affordable constructor for your next project?",
       "get_a_quote": "Get a quote",

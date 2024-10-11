@@ -1,38 +1,36 @@
-import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { motion } from 'framer-motion';
-import useSWR from 'swr';
 
-import ProjectsSkeleton from '@/components/sections/Projects/ProjectsSkeleton.tsx';
 import SelectService from '@/components/sections/Projects/SelectService.tsx';
 
 import { useProjectsFilterStore, useProjectsStore } from '@/store/projects';
 
-import { getProjects } from '@/api/projects';
-
 const Projects = () => {
   const { activeService } = useProjectsFilterStore();
-  const { isLoading, data } = useSWR(`${activeService}`, getProjects);
-  const { updateInfo, state: projects } = useProjectsStore();
+  const { data: projects } = useProjectsStore();
+  const { t } = useTranslation('common', {
+    keyPrefix: 'services',
+  });
 
-  useEffect(() => {
-    if (data) {
-      updateInfo(data);
-    }
-  }, [data]);
-
-  if (isLoading) {
-    return <ProjectsSkeleton />;
+  if (!projects) {
+    return <div>Loading...</div>;
   }
 
-  console.log(projects);
+  // Filter projects by active service
+  const filteredProjects = projects.filter((project) => {
+    if (!activeService) return true;
+    if (activeService === t('all')) return true;
+
+    return project?.service?.slug === activeService;
+  });
 
   return (
     <section className="portfolio_area">
       <div className="container">
         <SelectService />
         <div className="portfolio_inner row">
-          {projects?.map((project, i) => (
+          {filteredProjects?.map((project, i) => (
             <motion.div
               className="col-md-3 portfolio_single"
               key={project?.slug || i}
