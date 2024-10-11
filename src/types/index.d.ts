@@ -1,5 +1,5 @@
 export type * from './contact';
-export type * from './hero-slider';
+export type * from './slides';
 export type * from './service';
 export type * from './project';
 

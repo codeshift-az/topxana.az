@@ -1,7 +1,6 @@
-import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import ReadMore from '@/components/ui/ReadMore.tsx';
+import { useTranslation } from 'react-i18next';
 
 import useInView from '@/hooks/useInView.tsx';
 
@@ -15,7 +14,7 @@ type ServiceItemProps = {
   image: string;
 };
 
-const ServiceItem: FC<ServiceItemProps> = ({
+const ServiceItem = ({
   xsColumns,
   mdColumns,
   delay,
@@ -23,8 +22,9 @@ const ServiceItem: FC<ServiceItemProps> = ({
   title,
   image,
   description,
-}) => {
+}: ServiceItemProps) => {
   const [ref, isViewed] = useInView<HTMLDivElement>();
+  const { t } = useTranslation('common');
 
   return (
     <div
@@ -46,7 +46,9 @@ const ServiceItem: FC<ServiceItemProps> = ({
             <h3>{title}</h3>
           </Link>
           <p>{description}</p>
-          <ReadMore href={`/services/${slug}`} />
+          <Link className="read_more_btn" to={`/services/${slug}`}>
+            {t('read_more')} <i className="fa fa-angle-right"></i>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,24 +1,27 @@
 import { useTranslation } from 'react-i18next';
 
 import { motion } from 'framer-motion';
+import useSWR from 'swr';
 
-import SelectService from '@/components/sections/Projects/SelectService.tsx';
+import { useProjectsFilterStore } from '@/store';
 
-import { useProjectsFilterStore, useProjectsStore } from '@/store/projects';
+import { getProjectList } from '@/api/project';
+
+import SelectService from './components/SelectService.tsx';
 
 const Projects = () => {
   const { activeService } = useProjectsFilterStore();
-  const { data: projects } = useProjectsStore();
+  const { isLoading, data } = useSWR('projects', getProjectList);
   const { t } = useTranslation('common', {
     keyPrefix: 'services',
   });
 
-  if (!projects) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
   // Filter projects by active service
-  const filteredProjects = projects.filter((project) => {
+  const filteredProjects = data?.filter((project) => {
     if (!activeService) return true;
     if (activeService === t('all')) return true;
 

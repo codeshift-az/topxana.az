@@ -1,6 +1,8 @@
-import ServiceItem from '@/components/sections/Services/ServiceItem.tsx';
+import useSWR from 'swr';
 
-import { useServicesStore } from '@/store';
+import { getServiceList } from '@/api/service';
+
+import ServiceItem from './components/ServiceItem.tsx';
 
 type ServicesProps = {
   mdColumns: number;
@@ -8,15 +10,15 @@ type ServicesProps = {
 };
 
 const Services = ({ xsColumns, mdColumns }: ServicesProps) => {
-  const { state: services } = useServicesStore();
+  const { isLoading, data } = useSWR(`services`, getServiceList);
 
-  if (!services) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <section className="project_item_area">
       <div className="container">
         <div className="row">
-          {services?.map((service, i) => (
+          {data?.map((service, i) => (
             <ServiceItem
               key={service?.slug || i}
               delay={i * 50 + 100}

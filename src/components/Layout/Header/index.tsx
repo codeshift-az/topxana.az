@@ -3,11 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import useSWR from 'swr';
+
 import { Logo } from '@/assets/images';
 
 import HeaderBottom from '@/components/Layout/Header/HeaderBottom.tsx';
 
-import { useContactStore } from '@/store';
+import { getContactInformation } from '@/api/contact';
 
 function Header() {
   const { t, i18n } = useTranslation('common');
@@ -16,9 +18,7 @@ function Header() {
   const navigate = useNavigate();
 
   const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
-  const { data: contactInfo } = useContactStore();
-
-  if (!contactInfo) return <div>{t('loading')}</div>;
+  const { data, isLoading } = useSWR('contactInfo', getContactInformation);
 
   const languages = [
     {
@@ -47,6 +47,8 @@ function Header() {
     i18n.changeLanguage(newLanguage);
   };
 
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <header>
       <div className="header_top">
@@ -70,23 +72,23 @@ function Header() {
               </select>
             </div>
             <ul className="header_social">
-              {contactInfo.instagram && (
+              {data?.instagram && (
                 <li>
-                  <a href={contactInfo.instagram} target="_blank">
+                  <a href={data?.instagram} target="_blank">
                     <i className="fa fa-instagram"></i>
                   </a>
                 </li>
               )}
-              {contactInfo.facebook && (
+              {data?.facebook && (
                 <li>
-                  <a href={contactInfo.facebook} target="_blank">
+                  <a href={data?.facebook} target="_blank">
                     <i className="fa fa-facebook"></i>
                   </a>
                 </li>
               )}
-              {contactInfo.whatsapp && (
+              {data?.whatsapp && (
                 <li>
-                  <a href={contactInfo.whatsapp} target="_blank">
+                  <a href={data?.whatsapp} target="_blank">
                     <i className="fa fa-whatsapp"></i>
                   </a>
                 </li>
@@ -109,7 +111,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.phone')}</h4>
-                  <h5>{contactInfo.phone}</h5>
+                  <h5>{data?.phone}</h5>
                 </div>
               </div>
             </div>
@@ -120,7 +122,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.email')}</h4>
-                  <h5>{contactInfo.email}</h5>
+                  <h5>{data?.email}</h5>
                 </div>
               </div>
             </div>
@@ -131,7 +133,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.address')}</h4>
-                  <h5>{contactInfo.address}</h5>
+                  <h5>{data?.address}</h5>
                 </div>
               </div>
             </div>

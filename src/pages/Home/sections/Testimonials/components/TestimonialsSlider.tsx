@@ -1,5 +1,7 @@
 import { useCallback, useRef } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
@@ -27,6 +29,9 @@ const testimonialsData = [
 
 const TestimonialsSlider = () => {
   const sliderRef = useRef<null | SwiperRef>(null);
+  const { t } = useTranslation('common', {
+    keyPrefix: 'testimonials',
+  });
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
@@ -39,36 +44,46 @@ const TestimonialsSlider = () => {
   }, []);
 
   return (
-    <div className="testimonials_slider">
-      <Swiper speed={1200} ref={sliderRef} spaceBetween={50} slidesPerView={1}>
-        {testimonialsData.map((testimonial) => (
-          <SwiperSlide key={testimonial.id}>
-            <div className="itme">
-              <div className="testimonials_text">
-                <p>{testimonial.text}</p>
+    <div className="testimonials_inner_content">
+      <div className="section_tittle">
+        <h2>{t('title')}</h2>
+        <p>{t('content')} </p>
+      </div>
+      <div className="testimonials_slider">
+        <Swiper
+          speed={1200}
+          ref={sliderRef}
+          spaceBetween={50}
+          slidesPerView={1}>
+          {testimonialsData.map((testimonial) => (
+            <SwiperSlide key={testimonial.id}>
+              <div className="itme">
+                <div className="testimonials_text">
+                  <p>{testimonial.text}</p>
+                </div>
+                <div className="client_name">
+                  <h4>{testimonial.name}</h4>
+                  <h5>{testimonial.position}</h5>
+                </div>
               </div>
-              <div className="client_name">
-                <h4>{testimonial.name}</h4>
-                <h5>{testimonial.position}</h5>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-      {/* Кнопки навигации */}
-      <button
-        style={{ border: 'none' }}
-        className="owl-prev"
-        onClick={() => handlePrev()}>
-        <i className="fa fa-angle-left"></i>
-      </button>
-      <button
-        style={{ border: 'none' }}
-        className="owl-next"
-        onClick={() => handleNext()}>
-        <i className="fa fa-angle-right"></i>
-      </button>
+        {/* Кнопки навигации */}
+        <button
+          style={{ border: 'none' }}
+          className="owl-prev"
+          onClick={() => handlePrev()}>
+          <i className="fa fa-angle-left"></i>
+        </button>
+        <button
+          style={{ border: 'none' }}
+          className="owl-next"
+          onClick={() => handleNext()}>
+          <i className="fa fa-angle-right"></i>
+        </button>
+      </div>
     </div>
   );
 };

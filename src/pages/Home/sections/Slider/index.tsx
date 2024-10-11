@@ -2,19 +2,22 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import useSWR from 'swr';
 
 import fullHdPlaceholder from '@/assets/images/placeholder/1920x1080.png';
 
-import { useHeroSliderStore, useLayoutStore } from '@/store';
+import { useLayoutStore } from '@/store';
+
+import { getSlider } from '@/api/slides';
 
 const HeroSlider = () => {
-  const { data: heroSlides } = useHeroSliderStore();
   const { isFixed } = useLayoutStore();
+  const { data, isLoading } = useSWR('heroSlider', getSlider);
 
   return (
     <section className={`main_slider_area ${isFixed && 'marginFixed'}`}>
       <div className="">
-        {!heroSlides ? (
+        {isLoading ? (
           <div>
             <img
               alt="Placeholder slide"
@@ -32,7 +35,7 @@ const HeroSlider = () => {
             }}
             modules={[EffectFade, Autoplay]}
             className="slider_inner">
-            {heroSlides?.map((slide) => (
+            {data?.map((slide) => (
               <SwiperSlide key={slide?.slug}>
                 <div
                   style={{ position: 'relative', height: '100%' }}

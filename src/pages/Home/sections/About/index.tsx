@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import ReadMore from '@/components/ui/ReadMore.tsx';
+import { useTranslation } from 'react-i18next';
 
 import useInView from '@/hooks/useInView.tsx';
 
@@ -23,7 +23,9 @@ const About = () => {
               </div>
               <p>{t('about-1')} </p>
               <p>{t('about-2')}</p>
-              <ReadMore href="/about" />
+              <Link className="read_more_btn" to="/about">
+                {t('read_more')} <i className="fa fa-angle-right"></i>
+              </Link>
             </div>
           </div>
           <div

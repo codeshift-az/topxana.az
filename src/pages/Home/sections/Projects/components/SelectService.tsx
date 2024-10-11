@@ -1,19 +1,22 @@
 import { useTranslation } from 'react-i18next';
 
-import { useServicesStore } from '@/store';
-import { useProjectsFilterStore } from '@/store/projects';
+import useSWR from 'swr';
+
+import { useProjectsFilterStore } from '@/store';
+
+import { getServiceList } from '@/api/service';
 
 const SelectService = () => {
-  const { state: services } = useServicesStore();
+  const { isLoading, data } = useSWR(`services`, getServiceList);
   const { activeService, setActiveService } = useProjectsFilterStore();
   const { t } = useTranslation('common', {
     keyPrefix: 'services',
   });
 
   // For some reason, if I change services directly, it changes in global state
-  const localServices = services ? [...services] : [];
+  const localServices = data ? [...data] : [];
 
-  if (!services) {
+  if (!data || isLoading) {
     return <div>Loading...</div>;
   }
 
