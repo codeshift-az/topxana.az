@@ -11,7 +11,11 @@
       "price_request": "Запрос цены"
     },
     "footer": {
-      "links": "Ссылки"
+      "links": "Ссылки",
+      "about_us_heading": "О нас",
+      "about_us_description": "Vivamus nisi purus, luctus sit amet scelerisque volutpat, malesuada in quam. Morbi vehicula, ligula et consectetur dictum, lectus elit ultricies est, ut congue augue risus ac turpis.",
+      "contact_us_heading": "Контакт",
+      "contact_us_description": "Lorem ipsum dolor sit amet, tollit adolescens duo ea, ne porro complectitur."
     },
     "contact": {
       "email": "Эпочта",

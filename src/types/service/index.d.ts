@@ -1,20 +1,7 @@
-type Image = {
-  id: number;
-  url: string;
-};
-
-type Results = {
-  slug: string;
-  title: string;
-  images: Image[];
-  description: string;
+export type Service = {
   created_at: string;
   updated_at: string;
-};
-
-export type Services = {
-  count: string;
-  next: string;
-  previous: string;
-  results: Results[];
+  description: string;
+  slug: string;
+  title: string;
 };

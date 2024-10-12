@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
@@ -7,42 +6,24 @@ import useSWR from 'swr';
 
 import { LogoLight } from '@/assets/images';
 
-import { ContactInformation, Services } from '@/types';
-
 import { getContactInformation } from '@/api/contact';
-import { getServiceData } from '@/api/service';
+import { getServiceList } from '@/api/service';
 
 const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
 
 const Footer = () => {
   const { t } = useTranslation('common');
-  const { data: contactInfoData, isLoading } = useSWR(
+  const { data: contactInfo, isLoading: isContactLoading } = useSWR(
     'contactInfo',
     getContactInformation
   );
 
-  const { data: services, isLoading: serviceLoading } = useSWR(
-    'serviceData',
-    getServiceData
+  const { data: service, isLoading: isServiceLoading } = useSWR(
+    'service',
+    getServiceList
   );
 
-  const [serviceList, setServiceList] = useState<Services>();
-  const [contactInfo, setContactInfo] = useState<ContactInformation>();
-
-  useEffect(() => {
-    if (services) {
-      setServiceList(services);
-    }
-  }, [services]);
-
-  useEffect(() => {
-    if (contactInfoData) {
-      setContactInfo(contactInfoData);
-    }
-  }, [contactInfoData]);
-
-  if (isLoading) return <div>{t('loading')}</div>;
-  if (serviceLoading) return <div>{t('loading')}</div>;
+  if (isServiceLoading || isContactLoading) return <div>{t('loading')}</div>;
 
   return (
     <footer className="footer_area">
@@ -52,15 +33,10 @@ const Footer = () => {
             <div className="col-md-3">
               <div className="footer_widget_inner">
                 <div className="f_widget_tittle">
-                  <h3>{t('nav.about')}</h3>
+                  <h3>{t('footer.about_us_heading')}</h3>
                 </div>
                 <div className="f_about_widget">
-                  <p>
-                    Vivamus nisi purus, luctus sit amet scelerisque volutpat,
-                    malesuada in quam. Morbi vehicula, ligula et consectetur
-                    dictum, lectus elit ultricies est, ut congue augue risus ac
-                    turpis.
-                  </p>
+                  <p>{t('footer.about_us_description')}</p>
                   <img src={LogoLight} />
                 </div>
               </div>
@@ -72,11 +48,11 @@ const Footer = () => {
                 </div>
                 <div className="f_news_widget ">
                   <ul className="footer-services-list">
-                    {serviceList?.results?.map((service, index) => (
+                    {service?.map((service, index) => (
                       <li key={index}>
-                        <Link to="">
+                        <Link to={`/services/${service.slug}`}>
                           <i className="fa fa-angle-right" aria-hidden="true" />
-                          {t(`footer.${service.title}`)}
+                          {service.title}
                         </Link>
                       </li>
                     ))}
@@ -92,31 +68,31 @@ const Footer = () => {
                 <div className="f_navigation_widget">
                   <ul>
                     <li>
-                      <Link to="#">
+                      <Link to="/">
                         <i className="fa fa-angle-right" aria-hidden="true" />
                         {t('nav.home')}
                       </Link>
                     </li>
                     <li>
-                      <Link to="#">
+                      <Link to="/about">
                         <i className="fa fa-angle-right" aria-hidden="true" />
                         {t('nav.about')}
                       </Link>
                     </li>
                     <li>
-                      <Link to="#">
+                      <Link to="/services">
                         <i className="fa fa-angle-right" aria-hidden="true" />
                         {t('nav.services')}
                       </Link>
                     </li>
                     <li>
-                      <Link to="#">
+                      <Link to="/contact">
                         <i className="fa fa-angle-right" aria-hidden="true" />
                         {t('nav.contact')}
                       </Link>
                     </li>
                     <li>
-                      <Link to="#">
+                      <Link to="/projects">
                         <i className="fa fa-angle-right" aria-hidden="true" />
                         {t('nav.projects')}
                       </Link>
@@ -128,13 +104,10 @@ const Footer = () => {
             <div className="col-md-3">
               <div className="footer_widget_inner">
                 <div className="f_widget_tittle">
-                  <h3>{t('nav.contact')}</h3>
+                  <h3>{t('footer.contact_us_heading')}</h3>
                 </div>
                 <div className="f_contact_widget">
-                  <p>
-                    Lorem ipsum dolor sit amet, tollit adolescens duo ea, ne
-                    porro complectitur.
-                  </p>
+                  <p>{t('footer.contact_us_description')}</p>
                   <ul className="contact_lsit">
                     <li>
                       <a href="#">

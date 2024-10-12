@@ -1,8 +1,8 @@
-import { Services } from '@/types';
+import { Service } from '@/types';
 
 import axiosInstance from '@/api';
 
-export const getServiceData = async () => {
-  const { data } = await axiosInstance.get('/services');
-  return data as Services;
+export const getServiceList = async () => {
+  const { data } = await axiosInstance.get('/services?limit=all');
+  return data as Service[];
 };
