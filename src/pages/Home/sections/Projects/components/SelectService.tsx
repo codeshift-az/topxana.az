@@ -9,8 +9,8 @@ import { getServiceList } from '@/api/service';
 const SelectService = () => {
   const { isLoading, data } = useSWR(`services`, getServiceList);
   const { activeService, setActiveService } = useProjectsFilterStore();
-  const { t } = useTranslation('common', {
-    keyPrefix: 'services',
+  const { t } = useTranslation('pages', {
+    keyPrefix: 'home.services',
   });
 
   // For some reason, if I change services directly, it changes in global state

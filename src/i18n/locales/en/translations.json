@@ -14,31 +14,50 @@
       "email": "Email",
       "phone": "Phone",
       "address": "Address"
-    },
-    "services": {
-      "all": "All services"
-    },
-    "about": {
-      "title": "About us",
-      "about-1": "About our company",
-      "about-2": "Our team"
-    },
-    "testimonials": {
-      "title": "Testimonials",
-      "content": "Testimonials of our clients",
-      "why-us": "Why us?",
-      "why-us-content": "Main reasons to work with us"
-    },
-    "constructor": {
-      "title": "Affordable constructor for your next project?",
-      "get_a_quote": "Get a quote",
-      "our_projects": "Our projects"
-    },
-    "read_more": "Read more"
+    }
   },
   "pages": {
     "home": {
-      "title": "Home page"
+      "title": "Home page",
+      "services": {
+        "all": "All services"
+      },
+      "about": {
+        "title": "About us",
+        "about-1": "About our company",
+        "about-2": "Our team"
+      },
+      "testimonials": {
+        "title": "Testimonials",
+        "content": "Testimonials of our clients",
+        "why-us": "Why us?",
+        "why-us-content": "Main reasons to work with us",
+        "accordion-1-title": "Review 1 Title",
+        "accordion-1-content": "Review 1 Content",
+        "accordion-2-title": "Review 2 Title",
+        "accordion-2-content": "Review 2 Content",
+        "accordion-3-title": "Review 3 Title",
+        "accordion-3-content": "Review 3 Content",
+        "accordion-4-title": "Review 4 Title",
+        "accordion-4-content": "Review 4 Content",
+        "accordion-5-title": "Review 5 Title",
+        "accordion-5-content": "Review 5 Content",
+        "testimonial-1-text": "“Morbi dui purus, tincidunt vel feugiat nec, aliquet sed diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vitae justo vitae ligula aliquam cursus in rhoncus nisl.”",
+        "testimonial-1-name": "Kedrick Cart",
+        "testimonial-1-position": "Company Owner",
+        "testimonial-2-text": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue erat at massa consequat, sit amet sollicitudin velit.”",
+        "testimonial-2-name": "Sarah Smith",
+        "testimonial-2-position": "Marketing Director",
+        "testimonial-3-text": "“Nulla facilisi. Integer interdum elit ac elit volutpat, eget accumsan quam pulvinar. Nulla condimentum sem nec viverra lacinia.”",
+        "testimonial-3-name": "John Doe",
+        "testimonial-3-position": "CEO at XYZ Inc."
+      },
+      "constructor": {
+        "title": "Affordable constructor for your next project?",
+        "get_a_quote": "Get a quote",
+        "our_projects": "Our projects"
+      },
+      "read_more": "Read more"
     },
     "notFound": {
       "title": "Page not found",

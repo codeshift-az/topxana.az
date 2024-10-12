@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -6,31 +6,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 
-const testimonialsData = [
-  {
-    id: 1,
-    text: '“Morbi dui purus, tincidunt vel feugiat nec, aliquet sed diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vitae justo vitae ligula aliquam cursus in rhoncus nisl.”',
-    name: 'Kedrick Cart',
-    position: 'Company Owner',
-  },
-  {
-    id: 2,
-    text: '“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue erat at massa consequat, sit amet sollicitudin velit.”',
-    name: 'Sarah Smith',
-    position: 'Marketing Director',
-  },
-  {
-    id: 3,
-    text: '“Nulla facilisi. Integer interdum elit ac elit volutpat, eget accumsan quam pulvinar. Nulla condimentum sem nec viverra lacinia.”',
-    name: 'John Doe',
-    position: 'CEO at XYZ Inc.',
-  },
-];
-
 const TestimonialsSlider = () => {
   const sliderRef = useRef<null | SwiperRef>(null);
-  const { t } = useTranslation('common', {
-    keyPrefix: 'testimonials',
+  const { t } = useTranslation('pages', {
+    keyPrefix: 'home.testimonials',
   });
 
   const handlePrev = useCallback(() => {
@@ -43,11 +22,36 @@ const TestimonialsSlider = () => {
     sliderRef.current.swiper.slideNext();
   }, []);
 
+  // Memoized testimonials data to prevent unnecessary re-renders
+  const testimonialsSlides = useMemo(
+    () => [
+      {
+        id: 1,
+        text: t('testimonial-1-text'),
+        name: t('testimonial-1-name'),
+        position: t('testimonial-1-position'),
+      },
+      {
+        id: 2,
+        text: t('testimonial-2-text'),
+        name: t('testimonial-2-name'),
+        position: t('testimonial-2-position'),
+      },
+      {
+        id: 3,
+        text: t('testimonial-3-text'),
+        name: t('testimonial-3-name'),
+        position: t('testimonial-3-position'),
+      },
+    ],
+    [t] // Recalculate only when the translation function (`t`) changes
+  );
+
   return (
     <div className="testimonials_inner_content">
       <div className="section_tittle">
         <h2>{t('title')}</h2>
-        <p>{t('content')} </p>
+        <p>{t('content')}</p>
       </div>
       <div className="testimonials_slider">
         <Swiper
@@ -55,7 +59,7 @@ const TestimonialsSlider = () => {
           ref={sliderRef}
           spaceBetween={50}
           slidesPerView={1}>
-          {testimonialsData.map((testimonial) => (
+          {testimonialsSlides.map((testimonial) => (
             <SwiperSlide key={testimonial.id}>
               <div className="itme">
                 <div className="testimonials_text">
@@ -70,7 +74,7 @@ const TestimonialsSlider = () => {
           ))}
         </Swiper>
 
-        {/* Кнопки навигации */}
+        {/* Navigation Buttons */}
         <button
           style={{ border: 'none' }}
           className="owl-prev"

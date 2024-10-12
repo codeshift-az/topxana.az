@@ -14,31 +14,50 @@
       "email": "Эпочта",
       "phone": "Телефон",
       "address": "Адрес"
-    },
-    "services": {
-      "all": "Все услуги"
-    },
-    "about": {
-      "title": "О нас",
-      "about-1": "О нашей компании",
-      "about-2": "Наша команда"
-    },
-    "testimonials": {
-      "title": "Отзывы",
-      "content": "Отзывы наших клиентов",
-      "why-us": "Почему мы?",
-      "why-us-content": "Основные причины работать с нами"
-    },
-    "constructor": {
-      "title": "Доступный конструктор для вашего следующего проекта?",
-      "get_a_quote": "Получить предложение",
-      "our_projects": "Наши проекты"
-    },
-    "read_more": "Подробнее"
+    }
   },
   "pages": {
     "home": {
-      "title": "Домашняя страница"
+      "title": "Домашняя страница",
+      "services": {
+        "all": "Все услуги"
+      },
+      "about": {
+        "title": "О нас",
+        "about-1": "О нашей компании",
+        "about-2": "Наша команда"
+      },
+      "testimonials": {
+        "title": "Отзывы",
+        "content": "Отзывы наших клиентов",
+        "why-us": "Почему мы?",
+        "why-us-content": "Основные причины работать с нами",
+        "accordion-1-title": "Отзыв 1 Заголовок",
+        "accordion-1-content": "Отзыв 1 Содержание",
+        "accordion-2-title": "Отзыв 2 Заголовок",
+        "accordion-2-content": "Отзыв 2 Содержание",
+        "accordion-3-title": "Отзыв 3 Заголовок",
+        "accordion-3-content": "Отзыв 3 Содержание",
+        "accordion-4-title": "Отзыв 4 Заголовок",
+        "accordion-4-content": "Отзыв 4 Содержание",
+        "accordion-5-title": "Отзыв 5 Заголовок",
+        "accordion-5-content": "Отзыв 5 Содержание",
+        "testimonial-1-text": "“Morbi dui purus, tincidunt vel feugiat nec, aliquet sed diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vitae justo vitae ligula aliquam cursus in rhoncus nisl.”",
+        "testimonial-1-name": "Кедрик Карт",
+        "testimonial-1-position": "Владелец компании",
+        "testimonial-2-text": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue erat at massa consequat, sit amet sollicitudin velit.”",
+        "testimonial-2-name": "Сара Смит",
+        "testimonial-2-position": "Директор по маркетингу",
+        "testimonial-3-text": "“Nulla facilisi. Integer interdum elit ac elit volutpat, eget accumsan quam pulvinar. Nulla condimentum sem nec viverra lacinia.”",
+        "testimonial-3-name": "Джон Доу",
+        "testimonial-3-position": "Генеральный директор XYZ Inc."
+      },
+      "constructor": {
+        "title": "Доступный конструктор для вашего следующего проекта?",
+        "get_a_quote": "Получить предложение",
+        "our_projects": "Наши проекты"
+      },
+      "read_more": "Подробнее"
     },
     "notFound": {
       "title": "Страница не найдена",

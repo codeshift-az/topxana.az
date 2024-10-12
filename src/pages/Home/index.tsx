@@ -4,12 +4,12 @@ import Layout from '@/components/Layout';
 
 import { getPageTitle } from '@/helpers';
 
-import About from '@/pages/Home/sections/About';
-import GetAQuote from '@/pages/Home/sections/GetAQuote';
-import Projects from '@/pages/Home/sections/Projects';
-import Services from '@/pages/Home/sections/Services';
-import HeroSlider from '@/pages/Home/sections/Slider';
-import Testimonials from '@/pages/Home/sections/Testimonials';
+import About from './sections/About';
+import GetAQuote from './sections/GetAQuote';
+import Projects from './sections/Projects';
+import Services from './sections/Services';
+import HeroSlider from './sections/Slider';
+import Testimonials from './sections/Testimonials';
 
 function Home() {
   const { t } = useTranslation('pages', { keyPrefix: 'home' });

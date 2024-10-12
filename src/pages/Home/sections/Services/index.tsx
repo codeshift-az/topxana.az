@@ -22,10 +22,7 @@ const Services = ({ xsColumns, mdColumns }: ServicesProps) => {
             <ServiceItem
               key={service?.slug || i}
               delay={i * 50 + 100}
-              image={service?.images[0]?.image}
-              title={service?.title}
-              description={service?.description}
-              slug={service?.slug}
+              service={service}
               xsColumns={xsColumns}
               mdColumns={mdColumns}
             />

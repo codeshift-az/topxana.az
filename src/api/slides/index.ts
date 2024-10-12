@@ -1,8 +1,8 @@
-import { HeroSlider } from '@/types';
+import { Slide } from '@/types';
 
 import axiosInstance from '@/api';
 
-export const getSlider = async () => {
-  const { data } = await axiosInstance.get('/slides');
-  return data?.results as HeroSlider[];
+export const getSlideList = async () => {
+  const { data } = await axiosInstance.get('/slides?limit=all');
+  return data as Slide[];
 };

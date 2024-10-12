@@ -1,10 +1,13 @@
-import useInView from '@/hooks/useInView.tsx';
+import { useRef } from 'react';
+
+import { useInView } from 'framer-motion';
 
 import TestimonialsAccordion from './components/TestimonialsAccordion.tsx';
 import TestimonialsSlider from './components/TestimonialsSlider.tsx';
 
 const Testimonials = () => {
-  const [ref, isViewed] = useInView<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
+  const isViewed = useInView(ref, { once: true, margin: '-20px' });
 
   return (
     <section className="testimonials_area">

@@ -39,12 +39,12 @@ Table of Content:
 
 @font-face {
   font-family: 'heavy';
-  src: url(assets/fonts/theme-font/lato-heavy.woff);
+  src: url(/assets/fonts/theme-font/lato-heavy.woff);
 }
 
 @font-face {
   font-family: 'latosm';
-  src: url(assets/fonts/theme-font/Lato-Semibold.woff);
+  src: url(/assets/fonts/theme-font/Lato-Semibold.woff);
 }
 
 body {

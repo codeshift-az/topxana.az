@@ -1,13 +1,15 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import useInView from '@/hooks/useInView.tsx';
+import { useInView } from 'framer-motion';
 
 const About = () => {
-  const [ref, isViewed] = useInView<HTMLDivElement>();
-  const { t } = useTranslation('common', {
-    keyPrefix: 'about',
+  const ref = useRef<HTMLDivElement>(null);
+  const isViewed = useInView(ref, { once: true, margin: '-20px' });
+  const { t } = useTranslation('pages', {
+    keyPrefix: 'home',
   });
 
   return (
@@ -19,10 +21,10 @@ const About = () => {
             className={`${isViewed ? 'visible' : 'hiddenAllLeft'} col-md-6`}>
             <div className="company_content">
               <div className="about_tittle">
-                <h2>{t('title')}</h2>
+                <h2>{t('about.title')}</h2>
               </div>
-              <p>{t('about-1')} </p>
-              <p>{t('about-2')}</p>
+              <p>{t('about.about-1')} </p>
+              <p>{t('about.about-2')}</p>
               <Link className="read_more_btn" to="/about">
                 {t('read_more')} <i className="fa fa-angle-right"></i>
               </Link>

@@ -1,4 +1,4 @@
-export type HeroSlider = {
+export type Slide = {
   slug: string;
   title: string;
   image: string;

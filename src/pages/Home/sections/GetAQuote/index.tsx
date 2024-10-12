@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 const GetAQuote = () => {
-  const { t } = useTranslation('common', {
-    keyPrefix: 'constructor',
+  const { t } = useTranslation('pages', {
+    keyPrefix: 'home.constructor',
   });
 
   return (
