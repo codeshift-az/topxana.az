@@ -1,13 +1,17 @@
 import { useTranslation } from 'react-i18next';
 
-import { ContactInformation } from '@/types';
+import useSWR from 'swr';
 
-interface Props {
-  contactInfo: ContactInformation | undefined;
-}
+import { getContactInformation } from '@/api/contact';
 
-const ContactInfo = ({ contactInfo }: Props) => {
+const ContactInfo = () => {
   const { t } = useTranslation('pages', { keyPrefix: 'contact' });
+  const { data: contactInfo, isLoading: isContactInfoLoading } = useSWR(
+    'contactinfo',
+    getContactInformation
+  );
+
+  if (isContactInfoLoading) return <div>{t('loading')}</div>;
 
   return (
     <div className="contact_details">

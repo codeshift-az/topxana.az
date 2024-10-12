@@ -7,7 +7,7 @@ export type ContactInformation = {
   whatsapp: string;
 };
 
-export type ContactMessageForm = {
+export type ContactMessage = {
   first_name: string;
   last_name: string;
   email: string;

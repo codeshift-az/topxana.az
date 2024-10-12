@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
 import { Logo } from '@/assets/images';
-
-import { ContactInformation } from '@/types';
 
 import { getContactInformation } from '@/api/contact';
 
@@ -21,18 +19,14 @@ function Header() {
   const isActive = (path: string) =>
     location.pathname.endsWith(path) ? 'active' : '';
 
-  const [contactInfo, setContactInfo] = useState<ContactInformation>();
   const [mobileMenu, setMobileMenu] = useState(false);
 
-  const { data, isLoading } = useSWR('contactInfo', getContactInformation);
+  const { data: contactInfo, isLoading: isContactInfoLoading } = useSWR(
+    'contactInfo',
+    getContactInformation
+  );
 
-  useEffect(() => {
-    if (data) {
-      setContactInfo(data);
-    }
-  }, [data]);
-
-  if (isLoading) return <div>{t('loading')}</div>;
+  if (isContactInfoLoading) return <div>{t('loading')}</div>;
 
   return (
     <header>
