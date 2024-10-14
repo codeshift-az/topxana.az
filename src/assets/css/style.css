@@ -39,12 +39,59 @@ Table of Content:
 
 @font-face {
   font-family: 'heavy';
-  src: url(../fonts/theme-font/lato-heavy.woff);
+  src: url(/assets/fonts/theme-font/lato-heavy.woff);
 }
 
 @font-face {
   font-family: 'latosm';
-  src: url(../fonts/theme-font/Lato-Semibold.woff);
+  src: url(/assets/fonts/theme-font/Lato-Semibold.woff);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/*----------------------------------------------------- */
+/*---------------------------------------------------- */
+/* Animations */
+.hiddenLeft {
+  opacity: 0;
+  transform: translateX(-15%);
+}
+
+.hiddenAllLeft {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.hiddenRight {
+  opacity: 0;
+  transform: translateX(15%);
+}
+
+.hiddenAllRight {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.hiddenTop {
+  opacity: 0;
+  transform: translateY(15%);
+}
+
+.hiddenAllTop {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.hiddenBottom {
+  opacity: 0;
+  transform: translateY(-15%);
+}
+
+.visible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
 }
 
 /*---------------------------------------------------- */
@@ -59,8 +106,8 @@ h4,
 h5,
 h6,
 p {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   line-height: normal;
 }
 
@@ -99,9 +146,38 @@ video {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #26a65b;
   z-index: 99999999;
   background: #eee;
+}
+
+.marginFixed {
+  margin-top: 70px;
+}
+
+.language-select {
+  width: 200px; /* Уменьшил ширину */
+  padding: 8px; /* Сделал отступы поменьше */
+  font-size: 14px; /* Размер шрифта немного меньше */
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0; /* Немного уменьшил толщину границы */
+  border-radius: 6px; /* Уменьшил радиус скругления */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('https://img.icons8.com/ios-filled/50/000000/expand-arrow.png');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px; /* Уменьшил размер иконки */
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.language-select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.4); /* Уменьшил тень */
+  outline: none;
 }
 
 #preloader_1 {
@@ -113,7 +189,7 @@ video {
 
 #preloader_1 span {
   display: block;
-  bottom: 0px;
+  bottom: 0;
   width: 6px;
   height: 5px;
   background: #252c35;
@@ -144,7 +220,7 @@ video {
 @keyframes preloader_1 {
   0% {
     height: 5px;
-    transform: translateY(0px);
+    transform: translateY(0);
     background: #252c35;
   }
 
@@ -156,13 +232,13 @@ video {
 
   50% {
     height: 5px;
-    transform: translateY(0px);
+    transform: translateY(0);
     background: #252c35;
   }
 
   100% {
     height: 5px;
-    transform: translateY(0px);
+    transform: translateY(0);
     background: #252c35;
   }
 }
@@ -240,7 +316,7 @@ video {
 ============================================================================================ */
 .partner_area {
   background: #f7f7f7;
-  padding: 75px 0px 95px 0px;
+  padding: 75px 0 95px 0;
 }
 
 .partner_area .news_tittle {
@@ -253,7 +329,7 @@ video {
 
 .partner_area.partner_area2 {
   background: #fff;
-  padding: 50px 0px;
+  padding: 50px 0;
 }
 
 .partner_area.partner_area2 .partner_img {
@@ -330,7 +406,7 @@ video {
 
 .header_top .header_language .selector .dd.ddcommon .ddTitle {
   background: transparent;
-  border-radius: 0px;
+  border-radius: 0;
   color: #fff;
   font-size: 11px;
   font-family: 'Poppins', sans-serif;
@@ -364,7 +440,7 @@ video {
   min-width: 120px;
   top: 35px !important;
   box-shadow: none;
-  border-radius: 0px;
+  border-radius: 0;
   height: 112px !important;
 }
 
@@ -386,7 +462,7 @@ video {
   color: #fff;
   font-size: 13px;
   border-right: 1px solid #5db782;
-  padding: 0px 14px;
+  padding: 0 14px;
 }
 
 .header_top .header_language .header_social li:first-child a {
@@ -412,7 +488,7 @@ video {
 .header_top.header_top_gray .header_language .header_social li a {
   color: #919191;
   border-right: 1px solid #e7e7e7;
-  padding: 0px 14px;
+  padding: 0 14px;
 }
 
 .header_top.header_top_gray .header_language .header_social li:first-child a {
@@ -425,7 +501,7 @@ video {
 ============================================================================================ */
 .logo_area {
   overflow: hidden;
-  padding: 30px 0px;
+  padding: 30px 0;
 }
 
 .logo_area .contact_details_area .contact_item {
@@ -484,23 +560,23 @@ video {
 /* End Logo area css
 ============================================================================================ */
 .main_menu_area .navbar.navbar-default {
-  margin: 0px;
+  margin: 0;
   background: #252c35;
   border: none;
-  border-radius: 0px;
+  border-radius: 0;
   min-height: auto;
   box-shadow: none;
 }
 
 .main_menu_area .navbar.navbar-default .navbar-collapse {
-  padding: 0px;
+  padding: 0;
   position: relative;
 }
 
 .main_menu_area .navbar.navbar-default .navbar-collapse .nav.navbar-nav li a {
   background: transparent;
   text-shadow: none;
-  padding: 0px;
+  padding: 0;
   color: #fff;
   padding-right: 50px;
   line-height: 70px;
@@ -538,9 +614,9 @@ video {
     transform-origin: 50% 0;
     min-width: 200px;
     background: #252c35;
-    border-radius: 0px;
+    border-radius: 0;
     border: none;
-    padding: 0px;
+    padding: 0;
   }
 }
 
@@ -552,7 +628,7 @@ video {
   .dropdown-menu
   li
   a {
-  padding: 0px 15px;
+  padding: 0 15px;
   line-height: 50px;
   border-bottom: 1px solid #26a65b;
   font-family: 'Lato', sans-serif;
@@ -621,12 +697,12 @@ video {
   .search_menu
   li.search_bar
   .dropdown-menu {
-  top: 0px;
+  top: 0;
   min-width: auto;
   width: 100%;
   background: #26a65b;
-  margin: 0px;
-  border-radius: 0px;
+  margin: 0;
+  border-radius: 0;
   padding: 10px;
   height: 100%;
 }
@@ -657,7 +733,7 @@ video {
   width: 100%;
   outline: none;
   border: none;
-  padding: 0px 10px;
+  padding: 0 10px;
   border-radius: 3px;
   background: transparent;
   border: 1px solid #fff;
@@ -809,7 +885,7 @@ video {
   .search_menu
   li
   a {
-  line-height: 0px;
+  line-height: 0;
   color: #070707;
 }
 
@@ -827,12 +903,12 @@ video {
   .search_menu
   li.search_bar
   .dropdown-menu {
-  top: 0px;
+  top: 0;
   min-width: auto;
   width: 100%;
   background: #26a65b;
-  margin: 0px;
-  border-radius: 0px;
+  margin: 0;
+  border-radius: 0;
   padding: 10px;
   height: 100%;
 }
@@ -863,7 +939,7 @@ video {
   width: 100%;
   outline: none;
   border: none;
-  padding: 0px 10px;
+  padding: 0 10px;
   border-radius: 3px;
   background: transparent;
   border: 1px solid #fff;
@@ -943,17 +1019,18 @@ video {
 /* Banner area css
 ============================================================================================ */
 .banner_area {
-  background: url(../img/banner_bg.jpg) no-repeat scroll center center;
+  background: url(../images/placeholder/1920x1080.png) no-repeat scroll center
+    center;
   background-size: cover;
-  padding: 60px 0px 75px 0px;
+  padding: 60px 0 75px 0;
   position: relative;
 }
 
 .banner_area:before {
   content: '';
   background: rgba(0, 0, 0, 0.58);
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -996,7 +1073,7 @@ video {
 .request_btn {
   background: #26a65b;
   color: #fff;
-  padding: 0px 22px;
+  padding: 0 22px;
   display: inline-block;
   line-height: 50px;
   font-size: 15px;
@@ -1020,7 +1097,7 @@ video {
   line-height: 50px;
   background: #26a65b;
   line-height: 50px;
-  padding: 0px 30px;
+  padding: 0 30px;
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   font-size: 15px;
@@ -1040,7 +1117,7 @@ video {
   line-height: 50px;
   background: #fff;
   line-height: 50px;
-  padding: 0px 30px;
+  padding: 0 30px;
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   font-size: 15px;
@@ -1059,7 +1136,7 @@ video {
   line-height: 50px;
   background: #26a65b;
   line-height: 50px;
-  padding: 0px 30px;
+  padding: 0 30px;
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   font-size: 15px;
@@ -1079,7 +1156,7 @@ video {
   line-height: 50px;
   background: #353535;
   line-height: 50px;
-  padding: 0px 30px;
+  padding: 0 30px;
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   font-size: 15px;
@@ -1113,14 +1190,14 @@ video {
 .read_more_btn i {
   float: right;
   line-height: 40px;
-  padding: 0px 15px;
+  padding: 0 15px;
 }
 
 .read_more_btn:before {
   content: '';
   background: #1c954e;
   position: absolute;
-  right: 0px;
+  right: 0;
   width: 35px;
   height: 100%;
   z-index: -1;
@@ -1152,7 +1229,7 @@ video {
   display: inline-block;
   background: #26a65b;
   color: #fff;
-  padding: 0px 30px;
+  padding: 0 30px;
   height: 50px;
   border-radius: 3px;
   line-height: 48px;
@@ -1172,7 +1249,7 @@ video {
   display: inline-block;
   background: #26a65b;
   color: #fff;
-  padding: 0px 30px;
+  padding: 0 30px;
   height: 50px;
   border-radius: 3px;
   line-height: 48px;
@@ -1201,17 +1278,35 @@ video {
 .slider_inner {
   position: relative;
   z-index: 2;
+  height: 707px;
 }
 
-.slider_inner:before {
+.hero_slider_image_container:before {
   content: '';
   background: rgba(0, 0, 0, 0.55);
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
   z-index: 2;
+}
+
+.hero_slider_image_container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 707px;
+  z-index: -1;
+}
+
+.hero_slider_image_container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .slider_inner .camera_fakehover {
@@ -1265,7 +1360,7 @@ video {
 }
 
 .slider_inner .camera_fakehover .camera_bar .camera_bar_cont #pie_0 {
-  top: 0px !important;
+  top: 0 !important;
 }
 
 .slider_inner .slider_text {
@@ -1294,12 +1389,12 @@ video {
   max-width: 570px;
   font-family: 'Poppins', sans-serif;
   line-height: 30px;
-  padding: 20px 0px 35px 0px;
+  padding: 20px 0 35px 0;
 }
 
 .slider_inner.main_slider_middle .slider_text {
   position: relative;
-  top: 0px;
+  top: 0;
   width: 100%;
   text-align: center;
   top: 230px;
@@ -1310,7 +1405,7 @@ video {
   display: inline-block;
   line-height: 54px;
   height: 56px;
-  padding: 0px 56px;
+  padding: 0 56px;
   margin-top: 5px;
 }
 
@@ -1410,12 +1505,12 @@ video {
 /* Main Slider area css
 ============================================================================================ */
 .project_item_area {
-  padding: 45px 0px;
+  padding: 45px 0;
 }
 
 .project_item_inner {
   transition: all 400ms linear 0s;
-  box-shadow: 0px 0px 5.1px 0.9px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5.1px 0.9px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 
@@ -1424,14 +1519,14 @@ video {
 }
 
 .project_item_inner .project_item_content {
-  padding: 0px 15px 22px 15px;
+  padding: 0 15px 22px 15px;
 }
 
 .project_item_inner .project_item_content h3 {
   font-size: 20px;
   font-family: 'heavy';
   color: #313c45;
-  padding: 20px 0px 15px 0px;
+  padding: 20px 0 15px 0;
 }
 
 .project_item_inner .project_item_content p {
@@ -1443,7 +1538,7 @@ video {
 }
 
 .project_item_area.project_item2 {
-  padding: 60px 0px 80px 0px;
+  padding: 60px 0 80px 0;
   clear: both;
 }
 
@@ -1452,7 +1547,7 @@ video {
 }
 
 .project_item_area.project_item2 .project_item_inner .project_item_content {
-  padding: 0px;
+  padding: 0;
 }
 
 /* Main Slider area css
@@ -1460,7 +1555,7 @@ video {
 /* Project info area css
 ============================================================================================ */
 .project_info_area {
-  padding: 75px 0px 80px 0px;
+  padding: 75px 0 80px 0;
 }
 
 .project_info_area .project_info_slider .project_info_inner {
@@ -1527,7 +1622,7 @@ video {
 .project_info_area .project_info_slider .project_carousel_inner {
   border: none;
   overflow: hidden;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .project_info_area
@@ -1591,7 +1686,7 @@ video {
   .project_carousel_inner:hover
   .custom-navigation-carousel
   .flex-prev {
-  left: 0px;
+  left: 0;
 }
 
 .project_info_area
@@ -1599,7 +1694,7 @@ video {
   .project_carousel_inner:hover
   .custom-navigation-carousel
   .flex-next {
-  right: 0px;
+  right: 0;
 }
 
 .project_info_area .project_info_content .info_tittle {
@@ -1612,7 +1707,7 @@ video {
   font-family: 'Lato', sans-serif;
   line-height: 24px;
   border-bottom: 1px solid #eeeeee;
-  padding: 10px 0px;
+  padding: 10px 0;
 }
 
 .project_info_area .project_info_content ul li span {
@@ -1652,13 +1747,14 @@ video {
 /*----------------------------------------------------*/
 /* Portfolio area css
 ============================================================================================ */
+
 .portfolio_area {
   background: #f7f7f7;
-  padding: 70px 0px;
+  padding: 70px 0;
 }
 
 .portfolio_area.project_page {
-  padding: 70px 0px 80px 0px;
+  padding: 70px 0 80px 0;
 }
 
 .portfolio_area.project_page .portfolio_menu {
@@ -1681,7 +1777,7 @@ video {
 }
 
 .portfolio_menu li:last-child {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .portfolio_menu li:hover,
@@ -1698,11 +1794,57 @@ video {
 }
 
 .portfolio_area.portfolio_area2 {
-  padding: 80px 0px 120px 0px;
+  padding: 80px 0 120px 0;
 }
 
 .portfolio_area.portfolio_area2 .portfolio_menu {
   text-align: left;
+}
+
+.portfolio_single {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 0 !important;
+}
+
+.portfolio_content {
+  position: relative;
+}
+
+.portfolio_content img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.portfolio_single:hover img {
+  transform: scale(1.1);
+}
+
+.portfolio_overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.portfolio_single:hover .portfolio_overlay {
+  transform: translateY(0);
+}
+
+.services_list_skeleton {
+  gap: 32px;
+  display: flex !important;
+  margin: 0 auto !important;
+  margin-bottom: 40px !important;
+  width: fit-content !important;
 }
 
 /* Portfolio Slider area css
@@ -1712,11 +1854,11 @@ video {
 /* About Company area css
 ============================================================================================ */
 .conpany_about_area {
-  padding: 70px 0px;
+  padding: 70px 0;
 }
 
 .conpany_about_area .company_content .about_tittle {
-  padding: 20px 0px 25px 0px;
+  padding: 20px 0 25px 0;
 }
 
 .conpany_about_area .company_content p {
@@ -1758,7 +1900,7 @@ video {
   .owl-controls
   .owl-dots
   .owl-dot:last-child {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .conpany_about_area
@@ -1775,7 +1917,7 @@ video {
 ============================================================================================ */
 .testimonials_area {
   background: #f7f7f7;
-  padding: 70px 0px;
+  padding: 70px 0;
 }
 
 .testimonials_area .testimonials_inner_content .section_tittle {
@@ -1792,9 +1934,9 @@ video {
 }
 
 .chose_inner_area .panel-group .panel-default .panel-heading {
-  padding: 0px;
+  padding: 0;
   background: #f7f7f7;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .chose_inner_area .panel-group .panel-default .panel-heading .panel-title {
@@ -1847,17 +1989,6 @@ video {
   .panel-default
   .panel-heading
   .panel-title
-  a
-  span
-  .fa-plus {
-  display: none;
-}
-
-.chose_inner_area
-  .panel-group
-  .panel-default
-  .panel-heading
-  .panel-title
   a.collapsed
   span
   .fa-minus {
@@ -1882,7 +2013,7 @@ video {
   font-size: 13px;
   font-family: 'Poppins', sans-serif;
   color: #6f6f6f;
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 /* Testimonials area css
@@ -1890,7 +2021,7 @@ video {
 /* Global area css
 ============================================================================================ */
 .global_area {
-  padding: 60px 0px 50px 0px;
+  padding: 60px 0 50px 0;
 }
 
 .global_content .about_tittle {
@@ -1916,7 +2047,7 @@ video {
 ============================================================================================ */
 .about_team_area {
   background: #f0f0f0;
-  padding: 75px 0px 80px 0px;
+  padding: 75px 0 80px 0;
 }
 
 .about_team_inner .about_team_img {
@@ -1931,7 +2062,7 @@ video {
 .about_team_inner .team_detail {
   background: #fff;
   text-align: center;
-  padding: 20px 0px;
+  padding: 20px 0;
   transition: all 400ms linear 0s;
 }
 
@@ -1967,7 +2098,7 @@ video {
 /* Latest News area css
 ============================================================================================ */
 .our_latest_news_area {
-  padding: 80px 0px 50px 0px;
+  padding: 80px 0 50px 0;
 }
 
 .our_latest_news_area .news_tittle {
@@ -1976,12 +2107,12 @@ video {
 
 .our_latest_news_area.our_latest_news2 {
   background: #f0f0f0;
-  padding: 75px 0px;
+  padding: 75px 0;
 }
 
 .our_latest_news_area.our_latest_news2 .latest_news_inner .latest_news_content {
   background: #fff;
-  padding: 0px 18px 30px 18px;
+  padding: 0 18px 30px 18px;
 }
 
 .our_latest_news_area.our_latest_news2
@@ -2007,7 +2138,7 @@ video {
   font-size: 18px;
   font-family: 'heavy';
   color: #313c45;
-  padding: 20px 0px 12px 0px;
+  padding: 20px 0 12px 0;
 }
 
 .latest_news_inner .latest_news_date {
@@ -2043,7 +2174,7 @@ video {
   line-height: 30px;
   color: #848484;
   font-family: 'Poppins', sans-serif;
-  padding: 20px 0px 25px 0px;
+  padding: 20px 0 25px 0;
 }
 
 /* End Latest News area css
@@ -2051,7 +2182,7 @@ video {
 /* Main Blog area css
 ============================================================================================ */
 .blog_area {
-  padding: 75px 0px 25px 0px;
+  padding: 75px 0 25px 0;
 }
 
 .blog_area .blog_inner_area .blog_item {
@@ -2063,7 +2194,7 @@ video {
 }
 
 .blog_area.single_blog_area {
-  padding: 75px 0px 60px 0px;
+  padding: 75px 0 60px 0;
 }
 
 .blog_area.single_blog_area .blog_inner_area .blog_img img {
@@ -2106,7 +2237,7 @@ video {
   font-size: 20px;
   color: #000;
   font-weight: bold;
-  padding: 30px 0px 15px 0px;
+  padding: 30px 0 15px 0;
 }
 
 .blog_content .date_cmm {
@@ -2121,7 +2252,7 @@ video {
   font-family: 'Poppins', sans-serif;
   line-height: 30px;
   color: #848484;
-  padding: 20px 0px 35px 0px;
+  padding: 20px 0 35px 0;
 }
 
 .single_blog_content h3 {
@@ -2164,7 +2295,7 @@ video {
 }
 
 .blog_share_area .blog_share_icon {
-  padding: 22px 0px;
+  padding: 22px 0;
 }
 
 .blog_share_area .blog_share_icon h5 {
@@ -2226,7 +2357,7 @@ video {
   font-size: 13px;
   font-family: 'latosm';
   color: #26a65b;
-  padding: 5px 0px;
+  padding: 5px 0;
 }
 
 .blog_comment_area .media .media-body p {
@@ -2237,7 +2368,7 @@ video {
 }
 
 .blog_comment_from .comm_tittle {
-  padding: 60px 0px 30px 0px;
+  padding: 60px 0 30px 0;
 }
 
 .blog_comment_from input {
@@ -2248,7 +2379,7 @@ video {
   margin-bottom: 15px;
   outline: none;
   box-shadow: none;
-  padding: 0px 15px;
+  padding: 0 15px;
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   color: #797979;
@@ -2316,18 +2447,18 @@ video {
 .service_tab_menu .nav.nav-tabs li {
   float: none;
   display: block;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .service_tab_menu .nav.nav-tabs li a {
-  padding: 0px 15px;
+  padding: 0 15px;
   border-bottom: 1px solid #dfdfdf;
   display: block;
   border-left: none;
   border-top: none;
   border-right: none;
-  margin-right: 0px;
-  border-radius: 0px;
+  margin-right: 0;
+  border-radius: 0;
   background: #f1f1f1;
   line-height: 50px;
   font-size: 14px;
@@ -2363,11 +2494,11 @@ video {
 }
 
 .service_tab_content .latest_news_inner h3 {
-  padding: 25px 0px 20px 0px;
+  padding: 25px 0 20px 0;
 }
 
 .service_tab_content .latest_news_inner p {
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 .download_area {
@@ -2471,7 +2602,7 @@ video {
   text-shadow: none;
   color: #fff;
   border-radius: 3px;
-  padding: 0px;
+  padding: 0;
   width: 50px;
   transition: all 400ms linear 0s;
 }
@@ -2505,8 +2636,8 @@ video {
 
 .post_widget .media {
   border-bottom: 1px solid #eeeeee;
-  padding: 20px 0px;
-  margin-top: 0px;
+  padding: 20px 0;
+  margin-top: 0;
 }
 
 .post_widget .media .media-left i {
@@ -2529,7 +2660,7 @@ video {
 }
 
 .post_widget .media:nth-child(1) {
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 /* End Main Blog area css
@@ -2539,11 +2670,11 @@ video {
 /* Contact from area css
 ============================================================================================ */
 .contact_from_area {
-  padding: 75px 0px 90px 0px;
+  padding: 75px 0 90px 0;
 }
 
 .contact_from_area .blog_comment_from .comm_tittle {
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 .contact_from_area.contact_from_area2 .blog_comment_from p {
@@ -2629,7 +2760,7 @@ video {
 /* Error area css
 ============================================================================================ */
 .error_area {
-  padding: 10px 0px 145px 0px;
+  padding: 10px 0 145px 0;
 }
 
 .error_area .error_content {
@@ -2831,7 +2962,7 @@ video {
 }
 
 .f_contact_widget .f_widget_social li:last-child a {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .f_contact_widget .f_widget_social li:hover a {
@@ -2891,14 +3022,14 @@ video {
 
 @media (max-width: 991px) {
   .logo_area .contact_details_area .request_btn {
-    margin-left: 0px;
+    margin-left: 0;
     margin-top: 20px;
   }
 
   .logo_area .contact_details_area .contact_item {
     width: calc(100% / 3);
     float: left;
-    padding-right: 0px;
+    padding-right: 0;
   }
 
   .main_menu_area .navbar.navbar-default .navbar-collapse .nav.navbar-nav li a {
@@ -2911,7 +3042,7 @@ video {
   }
 
   .project_quote .right_content {
-    padding-top: 0px;
+    padding-top: 0;
     float: none !important;
     text-align: center;
     padding-bottom: 35px;
@@ -2924,7 +3055,7 @@ video {
   }
 
   .project_item_area .col-md-4:last-child .project_item_inner {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
 
   .portfolio_area .portfolio_inner {
@@ -2987,7 +3118,7 @@ video {
   }
 
   .about_team_area .col-md-3 {
-    margin: 15px 0px 15px 0px;
+    margin: 15px 0 15px 0;
   }
 
   .service_tab_content {
@@ -3011,6 +3142,18 @@ video {
 }
 
 @media (max-width: 767px) {
+  .header_bottom_active {
+    max-height: 500px !important;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header_bottom_disable {
+    max-height: 0 !important;
+    opacity: 0;
+    visibility: hidden;
+  }
+
   .main_menu_area .navbar.navbar-default .navbar-header .navbar-toggle {
     border-color: #26a65b;
     transition: all 300ms linear;
@@ -3026,7 +3169,7 @@ video {
   }
 
   .main_menu_area .navbar.navbar-default .navbar-collapse .nav.navbar-nav {
-    margin: 0px;
+    margin: 0;
   }
 
   .main_menu_area
@@ -3045,7 +3188,7 @@ video {
   }
 
   .main_menu_area .navbar.navbar-default .navbar-collapse .nav.navbar-nav li a {
-    padding-right: 0px;
+    padding-right: 0;
     line-height: 50px;
     padding-left: 15px;
   }
@@ -3118,7 +3261,7 @@ video {
   }
 
   .logo_area .pull-left.logo_neno {
-    padding-bottom: 0px;
+    padding-bottom: 0;
   }
 
   .portfolio_area .portfolio_inner {
@@ -3151,7 +3294,7 @@ video {
   }
 
   .footer_copyright_area {
-    padding: 20px 0px;
+    padding: 20px 0;
   }
 
   .footer_copyright_area .copyright_left h4 {
@@ -3169,6 +3312,13 @@ video {
 }
 
 @media (max-width: 480px) {
+  .marginFixed {
+    margin-top: 50px;
+  }
+  .hero_slider_image_container {
+    height: 400px;
+  }
+
   .project_quote .left_content h4 {
     line-height: 30px;
     padding-bottom: 30px;
@@ -3182,22 +3332,22 @@ video {
     .panel-title
     a
     span {
-    margin-right: 0px;
+    margin-right: 0;
     float: none;
     display: inline-block;
     vertical-align: middle;
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .chose_inner_area .panel-group .panel-default .panel-heading .panel-title a {
     line-height: 30px;
-    padding: 6px 0px;
+    padding: 6px 0;
   }
 
   .slider_inner.main_slider_middle .slider_text h4 {
     font-size: 18px;
     line-height: 26px;
-    padding: 0px 10px;
+    padding: 0 10px;
   }
 
   .slider_inner .slider_text h3 {
@@ -3230,7 +3380,7 @@ video {
 
   .service_tab_content {
     max-width: 300px;
-    margin: 0px;
+    margin: 0;
   }
 
   .service_area.service_details .service_tab_content {

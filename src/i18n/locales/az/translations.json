@@ -9,16 +9,55 @@
     },
     "header": {
       "price_request": "Qiymət sorğusu"
-    },
-    "contact": {
-      "email": "Email",
-      "phone": "Telefon",
-      "address": "Ünvan"
     }
   },
   "pages": {
     "home": {
-      "title": "Ana səhifə"
+      "title": "Ana səhifə",
+      "services": {
+        "all": "Bütün xidmətlər"
+      },
+      "about": {
+        "title": "Haqqımızda",
+        "about-1": "Bizim haqqımızda",
+        "about-2": "Komandamız"
+      },
+      "testimonials": {
+        "title": "Rəylər",
+        "content": "Müştərilərimizin rəyləri",
+        "why-us": "Niyə biz?",
+        "why-us-content": "Bizimlə işləməyin ən əsas səbəbləri",
+        "accordion-1-title": "Rəy 1 Başlıq",
+        "accordion-1-content": "Rəy 1 məzmunu",
+        "accordion-2-title": "Rəy 2 Başlıq",
+        "accordion-2-content": "Rəy 2 məzmunu",
+        "accordion-3-title": "Rəy 3 Başlıq",
+        "accordion-3-content": "Rəy 3 məzmunu",
+        "accordion-4-title": "Rəy 4 Başlıq",
+        "accordion-4-content": "Rəy 4 məzmunu",
+        "accordion-5-title": "Rəy 5 Başlıq",
+        "accordion-5-content": "Rəy 5 məzmunu",
+        "testimonial-1-text": "“Morbi dui purus, tincidunt vel feugiat nec, aliquet sed diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vitae justo vitae ligula aliquam cursus in rhoncus nisl.”",
+        "testimonial-1-name": "Kedrick Cart",
+        "testimonial-1-position": "Şirkət sahibi",
+        "testimonial-2-text": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue erat at massa consequat, sit amet sollicitudin velit.”",
+        "testimonial-2-name": "Sarah Smith",
+        "testimonial-2-position": "Marketinq Direktoru",
+        "testimonial-3-text": "“Nulla facilisi. Integer interdum elit ac elit volutpat, eget accumsan quam pulvinar. Nulla condimentum sem nec viverra lacinia.”",
+        "testimonial-3-name": "John Doe",
+        "testimonial-3-position": "XYZ Inc. CEO"
+      },
+      "contact": {
+        "email": "Email",
+        "phone": "Telefon",
+        "address": "Ünvan"
+      },
+      "constructor": {
+        "title": "Növbəti layihəniz üçün məsul vəziyyətdə konstruktor?",
+        "get_a_quote": "Qiymət təklifi",
+        "our_projects": "Bizim proyektlər"
+      },
+      "read_more": "Ətraflı"
     },
     "notFound": {
       "title": "Səhifə tapılmadı",

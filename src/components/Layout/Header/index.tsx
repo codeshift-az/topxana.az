@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -7,32 +7,47 @@ import useSWR from 'swr';
 
 import { Logo } from '@/assets/images';
 
-import { useContactStore } from '@/store';
+import HeaderBottom from '@/components/Layout/Header/HeaderBottom.tsx';
 
 import { getContactInformation } from '@/api/contact';
 
 function Header() {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
+  const logoAreaRef = useRef<HTMLDivElement | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const PROJECT_NAME = import.meta.env.VITE_PROJECT_NAME as string;
-
-  const location = useLocation();
-
-  const isActive = (path: string) =>
-    location.pathname.endsWith(path) ? 'active' : '';
-
-  const [mobileMenu, setMobileMenu] = useState(false);
-
   const { data, isLoading } = useSWR('contactInfo', getContactInformation);
-  const { state: contactInfo, updateInfo } = useContactStore();
 
-  useEffect(() => {
-    if (data) {
-      updateInfo(data);
+  const languages = [
+    {
+      code: 'en',
+      name: 'English',
+    },
+    {
+      code: 'ru',
+      name: 'Русский',
+    },
+    {
+      code: 'az',
+      name: 'Azərbaycan',
+    },
+  ];
+
+  const handleLanguageChange = (newLanguage: string) => {
+    const pathParts = location.pathname.split('/');
+    if (languages.some((lang) => lang.code === pathParts[1])) {
+      pathParts[1] = newLanguage;
+    } else {
+      pathParts.unshift(newLanguage);
     }
-  }, [data]);
+    const newPath = pathParts.join('/');
+    navigate(newPath);
+    i18n.changeLanguage(newLanguage);
+  };
 
-  if (isLoading) return <div>{t('loading')}</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <header>
@@ -44,28 +59,36 @@ function Header() {
 
           <div className="pull-right header_language">
             <div className="selector">
-              <select name="countries" style={{ width: '300px' }}>
-                <option value="yt">English</option>
+              <select
+                className="language-select"
+                name="countries"
+                value={i18n.language}
+                onChange={(e) => handleLanguageChange(e.target.value)}>
+                {languages.map((language) => (
+                  <option key={language.code} value={language.code}>
+                    {language.name}
+                  </option>
+                ))}
               </select>
             </div>
             <ul className="header_social">
-              {contactInfo.instagram && (
+              {data?.instagram && (
                 <li>
-                  <a href={contactInfo.instagram} target="_blank">
+                  <a href={data?.instagram} target="_blank">
                     <i className="fa fa-instagram"></i>
                   </a>
                 </li>
               )}
-              {contactInfo.facebook && (
+              {data?.facebook && (
                 <li>
-                  <a href={contactInfo.facebook} target="_blank">
+                  <a href={data?.facebook} target="_blank">
                     <i className="fa fa-facebook"></i>
                   </a>
                 </li>
               )}
-              {contactInfo.whatsapp && (
+              {data?.whatsapp && (
                 <li>
-                  <a href={contactInfo.whatsapp} target="_blank">
+                  <a href={data?.whatsapp} target="_blank">
                     <i className="fa fa-whatsapp"></i>
                   </a>
                 </li>
@@ -75,7 +98,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="logo_area">
+      <div ref={logoAreaRef} className="logo_area">
         <div className="container">
           <div className="pull-left logo_neno">
             <img src={Logo} alt="Logo" />
@@ -88,7 +111,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.phone')}</h4>
-                  <h5>{contactInfo.phone}</h5>
+                  <h5>{data?.phone}</h5>
                 </div>
               </div>
             </div>
@@ -99,7 +122,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.email')}</h4>
-                  <h5>{contactInfo.email}</h5>
+                  <h5>{data?.email}</h5>
                 </div>
               </div>
             </div>
@@ -110,7 +133,7 @@ function Header() {
                 </div>
                 <div className="media-body">
                   <h4>{t('contact.address')}</h4>
-                  <h5>{contactInfo.address}</h5>
+                  <h5>{data?.address}</h5>
                 </div>
               </div>
             </div>
@@ -121,48 +144,7 @@ function Header() {
         </div>
       </div>
 
-      <div className="main_menu_area">
-        <nav className="navbar navbar-default">
-          <div className="container">
-            <div className="navbar-header">
-              <button
-                type="button"
-                className="navbar-toggle collapsed"
-                onClick={() => setMobileMenu(!mobileMenu)}>
-                <span className="sr-only"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-            </div>
-
-            <div
-              className={`collapse navbar-collapse ${mobileMenu ? 'in' : ''}`}>
-              <ul className="nav navbar-nav">
-                <li className={isActive('/') ? 'active' : ''}>
-                  <Link to="/">{t('nav.home')}</Link>
-                </li>
-
-                <li className={isActive('/projects') ? 'active' : ''}>
-                  <Link to="/projects">{t('nav.projects')}</Link>
-                </li>
-
-                <li className={isActive('/services') ? 'active' : ''}>
-                  <Link to="/services">{t('nav.services')}</Link>
-                </li>
-
-                <li className={isActive('/about') ? 'active' : ''}>
-                  <Link to="/about">{t('nav.about')}</Link>
-                </li>
-
-                <li className={isActive('/contact') ? 'active' : ''}>
-                  <Link to="/contact">{t('nav.contact')}</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
+      <HeaderBottom logoAreaRef={logoAreaRef} />
     </header>
   );
 }
