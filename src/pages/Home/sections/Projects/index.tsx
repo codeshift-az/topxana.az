@@ -1,18 +1,18 @@
+import { useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
 
 import { motion } from 'framer-motion';
 import useSWR from 'swr';
 
-import { useProjectsFilterStore } from '@/store';
-
 import { getProjectList } from '@/api/project';
 import { getServiceList } from '@/api/service';
 
 const Projects = () => {
-  const { activeService, setActiveService } = useProjectsFilterStore();
   const { t } = useTranslation('pages', {
     keyPrefix: 'home.services',
   });
+  const [activeService, setActiveService] = useState<string | null>(null);
 
   const { isLoading: loadingProjects, data: projectData } = useSWR(
     'projects',
